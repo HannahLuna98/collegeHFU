@@ -6,19 +6,31 @@
                 <thead>
                 <tr>
                     <th scope="col">Hire ID</th>
-                    <th scope="col">Customer Name (f+l)</th>
+                    <th scope="col">Customer Name</th>
                     <th scope="col">Car Registration</th>
+                    <th scope="col">Insurance Included?</th>
+                    <th scope="col">Date of Rent</th>
                     <th scope="col">Date of Return</th>
+                    <th scope="col">Days Hired</th>
+                    <th scope="col">Total Hire Price</th>
                 </tr>
                 </thead>
                 <tbody>
-
+{{ dump(hires) }}
                 {% for hire in hires %}
                     <tr>
                         <th scope="row"><a href="#">{{ hire.hire_id }}</a></th>
                         <td>{{ hire.first_name }} {{ hire.last_name }}</td>
                         <td>{{ hire.car_registration }}</td>
+                        <td>{% if hire.insurance_cover %}
+                                <span class="fa fa-check"></span>
+                            {% else %}
+                                <span class="fa fa-gbp fa-fw"></span> 30.00 charge
+                            {% endif %}</td>
+                        <td>{{ hire.rent_date }}</td>
                         <td>{{ hire.return_date }}</td>
+                        <td>{{ hire.days_hired }}</td>
+                        <td>{{ hire.hire_price }}</td>
                     </tr>
                 {% endfor %}
 

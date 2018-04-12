@@ -11,28 +11,21 @@
                 <th scope="col">Rent Date</th>
                 <th scope="col">Return Date</th>
                 <th scope="col">Hire Price</th>
-                <th scope="col">Commission Price</th>
+                <th scope="col">Commission Received</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">0233</th>
-                <td>023</td>
-                <td>AK18 OBE</td>
-                <td>02/04/2018</td>
-                <td>02/04/2018</td>
-                <td>£100</td>
-                <td>£5</td>
-            </tr>
-            <tr>
-                <th scope="row">0093</th>
-                <td>019</td>
-                <td>DY06 MDF</td>
-                <td>20/03/2018</td>
-                <td>22/04/2018</td>
-                <td>£230</td>
-                <td>£11.5</td>
-            </tr>
+            {% for hire in hires %}
+                <tr>
+                    <td>{{ hire.hire_id }}</td>
+                    <td>{{ hire.customer_id }}</td>
+                    <td>{{ hire.car_registration }}</td>
+                    <td>{{ hire.rent_date }}</td>
+                    <td>{{ hire.return_date }}</td>
+                    <td>£ {{ hire.hire_price }}</td>
+                    <td>£ something calculated here</td>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
 

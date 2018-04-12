@@ -20,7 +20,11 @@
                         <td>{{ vehicle.make }}</td>
                         <td>{{ vehicle.model }}</td>
                         <td>£ {{ vehicle.car_price }}</td>
-                        <td>{% if vehicle.car_available %}<span class="fa fa-check"></span>{% endif %}</td>
+                        <td>
+                            {% if vehicle.car_available %}
+                                <span class="fa fa-check"></span>
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
 
