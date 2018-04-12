@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Hire;
 
 use AppBundle\Entity\Hire;
+use AppBundle\Form\HireType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,11 +49,37 @@ class HireController extends Controller
     }
 
     /**
-     * @Route("/hire/edit", name="hire_edit")
+     * @Route("/hire/edit/{hire}", name="hire_edit")
      */
-    public function editAction(Request $request)
+    public function editAction(Request $request, $hire)
     {
-        return $this->render('default/Hire/hire_edit.html.twig');
+        // Get repository
+        // Load customer entity from raw query based on id
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository(Hire::class);
+        $hire = $repo->findHire($hire);
+
+        $form = $this->createForm(HireType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $customerId = $form->get('customer_id')->getData();
+            $salespersonId = $form->get('salesperson_id')->getData();
+            $carReg = $form->get('car_registration')->getData();
+            $insuranceCover = $form->get('insurance_cover')->getData();
+            $rentDate = $form->get('rent_date')->getData();
+            $returnDate = $form->get('return_date')->getData();
+            $daysHired = $form->get('days_hired')->getData();
+
+            $repo->updateCustomer($customerId, $salespersonId, $carReg, $insuranceCover, $rentDate, $returnDate, $daysHired, $hire['id']);
+        }
+
+        return $this->render('default/Hire/hire_edit.html.twig', [
+                'form' => $form->createView(),
+                'hire' => $hire,
+            ]
+        );
     }
 
     /**

@@ -32,18 +32,18 @@ class HireType extends AbstractType
                 ]
             )
             ->add(
-                'rentDate', DateType::HTML5_FORMAT, [
+                'rentDate', DateType::class, [
                 'label' => 'Rent Date',
                 'attr'  => [
-                    'placeholder' => 'e.g. yyyy-MM-dd',
+                    'placeholder' => 'e.g. yyyy-mm-dd',
                     ]
                 ]
             )
             ->add(
-                'returnDate', DateType::HTML5_FORMAT, [
+                'returnDate', DateType::class, [
                 'label' => 'Return Date',
                 'attr'  => [
-                    'placeholder' => 'e.g. yyyy-MM-dd',
+                    'placeholder' => 'e.g. yyyy-mm-dd',
                     ]
                 ]
             )

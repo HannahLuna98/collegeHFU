@@ -54,7 +54,7 @@ class CustomerController extends Controller
     public function editAction(Request $request, $customer)
     {
         // Get repository
-        // Load custoemr entity from raw query based on id
+        // Load customer entity from raw query based on id
         $em = $this->getDoctrine()->getManager();
 
         $repo = $em->getRepository(Customer::class);

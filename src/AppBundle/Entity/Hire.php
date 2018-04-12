@@ -19,7 +19,7 @@ class Hire
      * The primary identifier
      *
      * @ORM\Id
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", name="hire_id")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;

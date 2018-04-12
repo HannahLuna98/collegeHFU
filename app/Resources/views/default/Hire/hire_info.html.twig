@@ -19,8 +19,10 @@
         Days Rented : {{ hire.days_hired }}<br />
         Total Hire Price : £ {{ hire.hire_price }}<br />
         <hr />
-        <button type="button" class="btn btn-primary btn-sm">Edit Hire</button>
 
+        <a href="{{ path('hire_edit', {hire: hire.id}) }}">
+            <button type="button" class="btn btn-primary btn-sm">Edit Hire</button>
+        </a>
         <button type="button" class="btn btn-primary btn-sm">Delete Hire</button>
 
     </div>
