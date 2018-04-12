@@ -8,6 +8,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Exception\AccessException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class SalespersonType
+ *
+ * @package AppBundle\Form
+ */
 class SalespersonType extends AbstractType
 {
     /**
@@ -19,8 +24,16 @@ class SalespersonType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName')
-            ->add('lastName');
+            ->add(
+                'firstName', null, [
+                'label' => 'First Name',
+                ]
+            )
+            ->add(
+                'lastName', null, [
+                'label' => 'Last Name',
+                ]
+            );
     }
 
     /**

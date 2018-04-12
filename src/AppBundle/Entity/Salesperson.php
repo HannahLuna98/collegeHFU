@@ -19,7 +19,7 @@ class Salesperson
      * The primary identifier
      *
      * @ORM\ID
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", name="salesperson_id")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
