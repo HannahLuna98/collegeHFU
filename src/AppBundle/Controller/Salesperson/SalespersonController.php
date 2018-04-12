@@ -19,11 +19,13 @@ class SalespersonController extends Controller
     }
 
     /**
-     * @Route("/salesperson/help", name="salesperson_help")
+     * @Route("/salesperson/help/", name="salesperson_help")
      */
-    public function helpAction(Request $request)
+    public function helpAction()
     {
-        return $this->render('default/Salesperson/salesperson_help.html.twig');
+        return $this->render('default/Salesperson/salesperson_help.html.twig', [
+            ]
+        );
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\History;
 
+use AppBundle\Entity\Hire;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +30,11 @@ class HistoryController extends Controller
      */
     public function viewAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository(Hire::class);
+
         return $this->render('default/History/history_view.html.twig', [
+                'hires' => $repo->viewAllHires()
             ]
         );
     }

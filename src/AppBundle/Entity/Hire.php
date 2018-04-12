@@ -47,6 +47,11 @@ class Hire
     protected $daysHired;
 
     /**
+     * @ORM\Column(type="decimal", name="hire_price")
+     */
+    protected $hirePrice;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Customer")
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="customer_id")
      */
@@ -205,6 +210,24 @@ class Hire
     public function setCarReg($carReg)
     {
         $this->carReg = $carReg;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHirePrice()
+    {
+        return $this->hirePrice;
+    }
+
+    /**
+     * @param mixed $hirePrice
+     * @return Hire
+     */
+    public function setHirePrice($hirePrice)
+    {
+        $this->hirePrice = $hirePrice;
         return $this;
     }
 }

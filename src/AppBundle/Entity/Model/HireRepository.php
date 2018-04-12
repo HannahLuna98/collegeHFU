@@ -24,7 +24,8 @@ class HireRepository extends EntityRepository
             insurance_cover,
             rent_date,
             return_date,
-            days_hired            
+            days_hired,
+            hire_price            
             FROM hire
             LEFT JOIN customer on hire.customer_id = customer.customer_id
             LEFT JOIN salesperson on hire.salesperson_id = salesperson.salesperson_id
@@ -52,7 +53,8 @@ class HireRepository extends EntityRepository
             insurance_cover,
             rent_date,
             return_date,
-            days_hired            
+            days_hired,
+            hire_price           
             FROM hire
             LEFT JOIN customer on hire.customer_id = customer.customer_id
             LEFT JOIN salesperson on hire.salesperson_id = salesperson.salesperson_id
