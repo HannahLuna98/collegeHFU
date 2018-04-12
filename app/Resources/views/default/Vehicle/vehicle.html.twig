@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-3">
+                <h1>Need Help?</h1>
+                <p class="lead"><a href="{{ path('vehicle_help') }}"><i class="fa fa-info fa-fw"></i>Click here</a></p>
+                <hr class="my-4">
+
+            </div>
+
+            <div class="col-md-9">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('home') }}"><i class="fa fa-home"></i></a></li>
+                    <li class="breadcrumb-item active">&nbsp;Vehicles</li>
+                </ol>
+
+                <div class="row">
+                    {% block content %}{% endblock %}
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

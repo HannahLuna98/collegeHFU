@@ -1,0 +1,32 @@
+{% extends '/default/Vehicle/vehicle.html.twig' %}
+
+{% block content %}
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Column heading</th>
+                    <th scope="col">Column heading</th>
+                    <th scope="col">Column heading</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-active">
+                    <th scope="row"><a href="{{ path('vehicle_info') }}">Car unavailable</a></th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                <tr>
+                    <th scope="row"><a href="{{ path('vehicle_info') }}">Car Available</a></th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+{% endblock %}

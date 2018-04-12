@@ -1,0 +1,146 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-3">
+                <h1>Hello,</h1>
+                <p class="lead">Let's get started</p>
+                <hr class="my-4">
+
+            </div>
+
+            <div class="col-md-9">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active"><i class="fa fa-home fa-fw"></i></li>
+                </ol>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card text-white bg-dark mb-3">
+
+                            <div class="card-header"><a class="text-white" href="{{ path('customer_view') }}">
+                                    <h4><i class="fa fa-users fa-fw"></i>&nbsp;&nbsp;Customers</h4></a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">View and manage your current customers</h4>
+                                <div class="list-group">
+                                    <p class="list-group-item list-group-item-action text-primary">
+                                        <a href="{{ path('customer_view') }}">
+                                            View All Customers
+                                        </a>
+                                    </p>
+                                    <p class="list-group-item list-group-item-action text-primary">
+                                        <a href="{{ path('customer_new') }}">
+                                            Add a New Customer
+                                        </a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card text-white bg-dark mb-3">
+
+                            <div class="card-header"><a class="text-white" href="{{ path('hire_view') }}">
+                                    <h4><i class="fa fa-gbp fa-fw"></i>&nbsp;&nbsp;Hires</h4></a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">View and manage your current Hires</h4>
+                                <div class="list-group">
+                                    <p class="list-group-item list-group-item-action text-primary">
+                                        <a href="{{ path('hire_view') }}">
+                                            View All Active Hires
+                                        </a>
+                                    </p>
+                                    <p class="list-group-item list-group-item-action text-primary">
+                                        <a href="{{ path('hire_new') }}">
+                                            Add a New Hire
+                                        </a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card text-white bg-dark mb-3">
+
+                            <div class="card-header"><a class="text-white" href="{{ path('vehicle_view') }}">
+                                    <h4><i class="fa fa-car fa-fw"></i>&nbsp;&nbsp;Vehicles</h4></a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">View and manage all vehicles</h4>
+                                <div class="list-group">
+                                    <p class="list-group-item list-group-item-action text-primary">
+                                        <a href="{{ path('vehicle_view') }}">
+                                            View All Available Vehicles
+                                        </a>
+                                    </p>
+                                    <p class="list-group-item list-group-item-action text-primary">
+                                        <a href="{{ path('vehicle_new') }}">
+                                            Add a New Vehicle
+                                        </a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+
+                        <div class="card text-white bg-dark mb-3">
+                            <div class="card-header"><a class="text-white" href="{{ path('history_view') }}">
+                                    <h4><i class="fa fa-archive fa-fw"></i>&nbsp;&nbsp;History</h4></a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">View previous Hires and Sales</h4>
+                                <div class="list-group">
+                                    <p class="list-group-item list-group-item-action text-primary">
+                                        <a href="{{ path('history_view') }}">
+                                            View History
+                                        </a>
+                                    </p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="card text-white bg-dark mb-3">
+                            <div class="card-header"><a class="text-white" href="{{ path('salesperson_view') }}">
+                                    <h4><i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;My Area</h4></a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">View and Manage Your Personal Information</h4>
+                                <div class="list-group">
+                                    <p class="list-group-item list-group-item-action text-primary">
+                                        <a href="{{ path('salesperson_view') }}">
+                                            View Your Details
+                                        </a>
+                                    </p>
+                                    <p class="list-group-item list-group-item-action text-primary">
+                                        <a href="{{ path('salesperson_edit') }}">
+                                            Edit Your Details
+                                        </a>
+                                    </p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

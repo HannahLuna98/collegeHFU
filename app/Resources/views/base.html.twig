@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('bootstrap-4.0.0/css/bootstrap.css') }}" type="text/css" />
+    <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="screen" />
+
+    <title>{% block title %}Hire_From_Us!{% endblock %}</title>
+
+</head>
+<body>
+
+<div style="margin: 30px" class="bs-component">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ path('home') }}">Hire_From_Us</a>
+
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('customer_view') }}">Customers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('hire_view') }}">Hires</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('vehicle_view') }}">Vehicles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('history_view') }}">History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('salesperson_view') }}">My Area</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div style="margin: 30px" class="">
+    {% block body %}
+    {% endblock %}
+</div>
+
+<div style="margin: 30px">
+    <div class="col-md-12">
+        <input type="submit" value="Back" onclick="history.back()" class="btn btn-primary btn-sm pull-right">
+        </input>
+    </div>
+</div>
+
+    <!-- Optional JavaScript -->
+    <script src="{{ asset('jquery-3.3.1/js') }}"></script>
+    <script src="{{ asset('bootstrap-4.0.0/js/bootstrap.js') }}"></script>
+
+</body>
+</html>
