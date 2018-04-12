@@ -2,12 +2,24 @@
 
 {% block body %}
     <div class="col-md-12">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ path('home') }}"><i class="fa fa-home"></i></a></li>
-            <li class="breadcrumb-item"><a href="{{ path('customer_view') }}">&nbsp;Customers</a></li>
-            <li class="breadcrumb-item active">&nbsp;Help</li>
-        </ol>
-       custhelp
+        <div class="row">
+            <div class="col-md-3">
+                <h1>All Done?</h1>
+                <hr />
+                <a href="{{ path('customer_view') }}">
+                    Return to Customers
+                </a>
 
+            </div>
+
+            <div class="col-md-9">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('home') }}"><i class="fa fa-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{ path('customer_view') }}">&nbsp;Customers</a></li>
+                    <li class="breadcrumb-item active">&nbsp;Help</li>
+                </ol>
+                custhelp
+            </div>
+        </div>
     </div>
 {% endblock %}
