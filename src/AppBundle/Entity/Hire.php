@@ -46,6 +46,25 @@ class Hire
      */
     protected $daysHired;
 
+    //Join Attempt??
+    /**
+     * @ORM\ManyToOne(targetEntity="Customer")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="customer_id")
+     */
+    protected $customer;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Salesperson")
+     * @ORM\JoinColumn(name="salesperson_id", referencedColumnName="salesperson_id")
+     */
+    protected $salesperson;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Vehicle")
+     * @ORM\JoinColumn(name="car_registration", referencedColumnName="car_registration")
+     */
+    protected $carReg;
+
     /**
      * @return mixed
      */
@@ -133,6 +152,60 @@ class Hire
     public function setDaysHired($daysHired)
     {
         $this->daysHired = $daysHired;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param mixed $customer
+     * @return Hire
+     */
+    public function setCustomer($customer)
+    {
+        $this->customer = $customer;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSalesperson()
+    {
+        return $this->salesperson;
+    }
+
+    /**
+     * @param mixed $salesperson
+     * @return Hire
+     */
+    public function setSalesperson($salesperson)
+    {
+        $this->salesperson = $salesperson;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCarReg()
+    {
+        return $this->carReg;
+    }
+
+    /**
+     * @param mixed $carReg
+     * @return Hire
+     */
+    public function setCarReg($carReg)
+    {
+        $this->carReg = $carReg;
         return $this;
     }
 }
