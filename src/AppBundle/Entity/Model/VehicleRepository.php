@@ -9,7 +9,7 @@ class VehicleRepository extends EntityRepository
     /**
      * Gets the Vehicle Id and retrieves their information
      *
-     * @return integer
+     *
      */
     public function findVehicle($vehicle) {
 
@@ -54,27 +54,36 @@ class VehicleRepository extends EntityRepository
 
     public function updateVehicle($carReg, $make, $model, $colour, $capacity, $price, $available) {
 
-        $sql = "
+        $sql = '
             UPDATE car
             SET 
-             car_registration = '$carReg',
-             make = '$make',
-             model = '$model',
-             colour = '$colour',
-             capacity = '$capacity',
-             car_price = '$price',
-             car_available = '$available'
+             car_registration = :carReg,
+             make = :make,
+             model = :model,
+             colour = :colour,
+             capacity = :capacity,
+             car_price = :price,
+             car_available = :available
 
-            WHERE car_registration = $carReg
-        ";
+            WHERE car_registration = :carReg
+        ';
 
         $em = $this->getEntityManager();
-        $em->getConnection()->executeQuery($sql);
+        $em->getConnection()->executeQuery($sql, [
+            'carReg' => $carReg,
+            'make' => $make,
+            'model' => $model,
+            'colour' => $colour,
+            'capacity' => $capacity,
+            'price' => $price,
+            'available' => $available,
+            ]
+        );
     }
 
     public function addNewVehicle($carReg, $make, $model, $colour, $capacity, $price, $available) {
 
-        $sql = "
+        $sql = '
             INSERT INTO car (
               car_registration,
               make,
@@ -85,17 +94,26 @@ class VehicleRepository extends EntityRepository
               car_price,
               car_available
             ) VALUES (
-              '$carReg'
-              '$make'
-              '$model'
-              '$colour'
-              '$capacity'
-              '$price'
-              '$available')
-        ";
+              :carReg,
+              :make,
+              :model,
+              :colour,
+              :capacity,
+              :price,
+              :available,)
+        ';
 
         $em = $this->getEntityManager();
-        $em->getConnection()->executeQuery($sql);
+        $em->getConnection()->executeQuery($sql, [
+                'carReg' => $carReg,
+                'make' => $make,
+                'model' => $model,
+                'colour' => $colour,
+                'capacity' => $capacity,
+                'price' => $price,
+                'available' => $available,
+            ]
+        );
     }
 
     public function deleteVehicle($vehicle) {

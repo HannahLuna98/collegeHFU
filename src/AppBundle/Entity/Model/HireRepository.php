@@ -70,15 +70,15 @@ class HireRepository extends EntityRepository
         $sql = "
             UPDATE hire
             SET 
-            customer.customer_id = '$customerId',
-            customer.first_name = '$firstName',
-            customer.last_name = '$lastName',
-            salesperson.salesperson_id '$salespersonId',
-            car.car_registration = '$carReg',
-            insurance_cover = '$insuranceCover',
-            rent_date = '$rentDate',
-            return_date = '$returnDate',
-            days_hired = '$daysHired'           
+            customer.customer_id = :customerId,
+            customer.first_name = :firstName,
+            customer.last_name = :lastName,
+            salesperson.salesperson_id :salespersonId,
+            car.car_registration = :carReg,
+            insurance_cover = :insuranceCover,
+            rent_date = :rentDate,
+            return_date = :returnDate,
+            days_hired = :daysHired           
             FROM hire
             LEFT JOIN customer on hire.customer_id = customer.customer_id
             LEFT JOIN salesperson on hire.salesperson_id = salesperson.salesperson_id
@@ -88,12 +88,23 @@ class HireRepository extends EntityRepository
         ";
 
         $em = $this->getEntityManager();
-        $em->getConnection()->executeQuery($sql);
+        $em->getConnection()->executeQuery($sql, [
+                'customerId' => $customerId,
+                'firstName' => $firstName,
+                'lastName' => $lastName,
+                'salespersonId' => $salespersonId,
+                'carReg' => $carReg,
+                'insuranceCover' => $insuranceCover,
+                'rentDate' => $rentDate,
+                'returnDate' => $returnDate,
+                'daysHired' => $daysHired,
+            ]
+        );
     }
 
     public function addNewHire($customerId, $salespersonId, $carReg, $insuranceCover, $rentDate, $returnDate, $daysHired) {
 
-        $sql = "
+        $sql = '
             INSERT INTO hire (
               customer_id,
               salesperson_id,
@@ -103,18 +114,27 @@ class HireRepository extends EntityRepository
               return_date,
               days_hired,              
             ) VALUES (
-              '$customerId',
-              '$salespersonId',
-              '$carReg',
-              '$insuranceCover',
-              '$rentDate',
-              '$returnDate',
-              '$daysHired'
+              :customerId,
+              :salespersonId,
+              :carReg,
+              :insuranceCover,
+              :rentDate,
+              :returnDate,
+              :daysHired
             )
-        ";
+        ';
 
         $em = $this->getEntityManager();
-        $em->getConnection()->executeQuery($sql);
+        $em->getConnection()->executeQuery($sql, [
+                'customerId' => $customerId,
+                'salespersonId' => $salespersonId,
+                'carReg' => $carReg,
+                'insuranceCover' => $insuranceCover,
+                'rentDate' => $rentDate,
+                'returnDate' => $returnDate,
+                'daysHired' => $daysHired,
+            ]
+        );
     }
 
     public function deleteHire($hire) {

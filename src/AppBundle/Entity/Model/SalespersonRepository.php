@@ -33,12 +33,12 @@ class SalespersonRepository extends EntityRepository
 
     public function updateSalesperson($firstName, $lastName, $id) {
 
-        $sql = "
+        $sql = '
             UPDATE salesperson
             SET first_name = :firstName,
             last_name = :lastName
             WHERE salesperson_id = :id
-        ";
+        ';
 
         $em = $this->getEntityManager();
         $em->getConnection()->executeQuery($sql, [
