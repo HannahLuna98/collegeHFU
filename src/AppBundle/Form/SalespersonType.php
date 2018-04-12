@@ -5,22 +5,39 @@ namespace AppBundle\Form;
 use AppBundle\Entity\Salesperson;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\Exception\AccessException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SalespersonType extends AbstractType
 {
+    /**
+     * Builds form for Salesperson
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('firstName')
-            ->add('lastName')
-        ;
+            ->add('lastName');
     }
 
+    /**
+     * Configure form for Customer
+     *
+     * @param OptionsResolver $resolver does things
+     *
+     * @inheritdoc
+     *
+     * @throws AccessException
+     * @return null
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefault([
-            'data_class' => Salesperson::class,
+        $resolver->setDefaults(
+            [
+                'data_class' => Salesperson::class,
             ]
         );
     }

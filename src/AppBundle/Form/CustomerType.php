@@ -5,10 +5,17 @@ namespace AppBundle\Form;
 use AppBundle\Entity\Customer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\Exception\AccessException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CustomerType extends AbstractType
 {
+    /**
+     * Builds form fields for Customer
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -18,13 +25,23 @@ class CustomerType extends AbstractType
             ->add('city')
             ->add('postCode')
             ->add('mobile')
-            ->add('email')
-        ;
+            ->add('email');
     }
 
+    /**
+     * Configure form for Customer
+     *
+     * @param OptionsResolver $resolver does things
+     *
+     * @inheritdoc
+     *
+     * @throws AccessException
+     * @return null
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefault([
+        $resolver->setDefaults(
+            [
             'data_class' => Customer::class,
             ]
         );
