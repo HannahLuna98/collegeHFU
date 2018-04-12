@@ -2,20 +2,23 @@
 
 {% block content %}
     <div class="col-md-12">
-        A single hire profile.
-
         <hr />
-        Customer ID <br />
-        Salesperson ID <br />
-        Car Registration <br />
+        Customer ID : {{ hire.customer_id }}<br />
+        Customer Name : {{ hire.first_name }} {{ hire.last_name }}<br />
+        Car Registration : {{ hire.car_registration }}<br />
         <hr />
-        Include basic Insurance Plan? <br />
-        Rent Date <br />
-        Return Date <br />
-        Days Rented <br />
-
+        Include basic Insurance Plan? :
+            {% if hire.insurance_cover %}
+                <span class="fa fa-fw fa-check"></span>
+            {% else %}
+                Not included. Add <span class="fa fa-fw fa-gbp"></span>30.00 charge
+            {% endif %}
+        <br />
+        Rent Date : {{ hire.rent_date }}<br />
+        Return Date : {{ hire.return_date }}<br />
+        Days Rented : {{ hire.days_hired }}<br />
+        Total Hire Price : £ {{ hire.hire_price }}<br />
         <hr />
-
         <button type="button" class="btn btn-primary btn-sm">Edit Hire</button>
 
         <button type="button" class="btn btn-primary btn-sm">Delete Hire</button>

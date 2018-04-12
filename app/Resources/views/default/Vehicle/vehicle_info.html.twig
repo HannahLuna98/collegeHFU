@@ -5,12 +5,17 @@
         Car details.
 
         <hr />
-        Car Registration: {{ vehicle.id }} <br />
-        Make {{ vehicle.make }}<br />
-        Model {{ vehicle.model }}<br />
-        Capacity {{ vehicle.capacity }}<br />
-        Price {{ vehicle.car_price }}<br />
-        Available? {{ vehicle.car_available }}<br />
+        Car Registration : {{ vehicle.id }} <br />
+        Make : {{ vehicle.make }}<br />
+        Model : {{ vehicle.model }}<br />
+        Capacity : {{ vehicle.capacity }}<br />
+        Price : {{ vehicle.car_price }}<br />
+        Available? :
+            {% if vehicle.car_available %}
+                Yes
+            {% else %}
+                No
+            {% endif %}<br />
         <hr />
         <button type="button" class="btn btn-primary btn-sm">Edit Car</button>
 

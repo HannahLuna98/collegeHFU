@@ -8,6 +8,7 @@
                     <th scope="col">Car Registration</th>
                     <th scope="col">Make</th>
                     <th scope="col">Model</th>
+                    <th scope="col">Colour</th>
                     <th scope="col">Price</th>
                     <th scope="col">Available?</th>
                 </tr>
@@ -19,6 +20,7 @@
                         <th scope="row"><a href="{{ path('vehicle_info', {vehicle: vehicle.car_registration}) }}">{{ vehicle.car_registration }}</a></th>
                         <td>{{ vehicle.make }}</td>
                         <td>{{ vehicle.model }}</td>
+                        <td>{{ vehicle.colour }}</td>
                         <td>£ {{ vehicle.car_price }}</td>
                         <td>
                             {% if vehicle.car_available %}

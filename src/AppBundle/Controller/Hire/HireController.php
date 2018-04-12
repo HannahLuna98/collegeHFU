@@ -56,10 +56,18 @@ class HireController extends Controller
     }
 
     /**
-     * @Route("/hire/info", name="hire_info")
+     * @Route("/hire/info/{hire}", name="hire_info")
      */
-    public function infoAction(Request $request)
+    public function infoAction($hire)
     {
-        return $this->render('default/Hire/hire_info.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository(Hire::class);
+        $hire = $repo->findHire($hire);
+
+        return $this->render('default/Hire/hire_info.html.twig', [
+            'hire' => $hire
+            ]
+        );
     }
 }

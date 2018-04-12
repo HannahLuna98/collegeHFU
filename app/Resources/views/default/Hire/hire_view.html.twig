@@ -16,10 +16,9 @@
                 </tr>
                 </thead>
                 <tbody>
-{{ dump(hires) }}
                 {% for hire in hires %}
                     <tr>
-                        <th scope="row"><a href="#">{{ hire.hire_id }}</a></th>
+                        <th scope="row"><a href="{{ path('hire_info', {hire: hire.hire_id}) }}">{{ hire.hire_id }}</a></th>
                         <td>{{ hire.first_name }} {{ hire.last_name }}</td>
                         <td>{{ hire.car_registration }}</td>
                         <td>{% if hire.insurance_cover %}
