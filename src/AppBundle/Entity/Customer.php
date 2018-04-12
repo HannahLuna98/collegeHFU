@@ -47,30 +47,46 @@ class Customer
     /**
      * Customer's Street Address
      * @ORM\Column(type="varchar", length=35, name="street")
+     * @Assert\Length(
+     *     max = 35,
+     *     min = 2,
+     * )
      */
     protected $street;
 
     /**
      * Customer's City Address
      * @ORM\Column(type="varchar", length=35, name="city")
+     * @Assert\Length(
+     *     max = 35,
+     *     min = 2,
+     * )
      */
     protected $city;
 
     /**
      * Customer's Post Code
-     * @ORM\Column(type="varchar", length=35, name="post_code")
+     * @ORM\Column(type="varchar", length=7, name="post_code")
+     * @Assert\Length(
+     *     max = 7,
+     *     min = 5,
+     * )
      */
     protected $postCode;
 
     /**
      * Customer's Mobile Number
      * @ORM\Column(type="varchar", length=11, name="mobile")
+     * @Assert\Type(
+     *     type="digit"
+     * )
      */
     protected $mobile;
 
     /**
      * Customer's Email Address
      * @ORM\Column(type="varchar", length=50, name="email")
+     * @Assert\Email()
      */
     protected $email;
 
