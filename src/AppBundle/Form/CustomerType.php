@@ -56,7 +56,7 @@ class CustomerType extends AbstractType
             )
             ->add(
                 'email', null, [
-                    'label' => 'Email',
+                    'label' => 'Email Address',
                 ]
             );
     }
