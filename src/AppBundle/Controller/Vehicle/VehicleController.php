@@ -56,10 +56,18 @@ class VehicleController extends Controller
     }
 
     /**
-     * @Route("/vehicle/info", name="vehicle_info")
+     * @Route("/vehicle/info/{vehicle}/", name="vehicle_info")
      */
-    public function infoAction(Request $request)
+    public function infoAction($vehicle)
     {
-        return $this->render('default/Vehicle/vehicle_info.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository(Vehicle::class);
+        $vehicle = $repo->findVehicle($vehicle);
+
+        return $this->render('default/Vehicle/vehicle_info.html.twig', [
+            'vehicle' => $vehicle
+            ]
+        );
     }
 }

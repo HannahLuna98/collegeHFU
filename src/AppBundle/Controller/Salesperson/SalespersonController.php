@@ -48,17 +48,22 @@ class SalespersonController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $repo = $em->getRepository(Salesperson::class);
-        $salesperson = $repo->findSalesPerson($salesperson);
+        $salesperson = $repo->findSalesperson($salesperson);
 
         $form = $this->createForm(SalespersonType::class, $salesperson);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $firstName = $form->get('firstName')->getData();
-            $lastName = $form->get('lastName')->getData();
+            $firstName = $form->get('first_name')->getData();
+            $lastName = $form->get('last_name')->getData();
 
             $repo->updateSalesperson($firstName, $lastName, $salesperson['id']);
+
+            return $this->redirectToRoute('salesperson_view', [
+                    'salesperson' => $salesperson['id']
+                ]
+            );
         }
 
         return $this->render(

@@ -87,8 +87,13 @@ class CustomerController extends Controller
     /**
      * @Route("/customer/info/{customer}", name="customer_info")
      */
-    public function infoAction(Request $request, Customer $customer)
+    public function infoAction($customer)
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository(Customer::class);
+        $customer = $repo->findCustomer($customer);
+
         return $this->render('default/Customer/customer_info.html.twig', [
             'customer' => $customer
             ]

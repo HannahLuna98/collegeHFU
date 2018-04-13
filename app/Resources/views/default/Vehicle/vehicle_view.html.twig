@@ -16,7 +16,7 @@
 
                 {% for vehicle in vehicles %}
                     <tr {% if not vehicle.car_available %}class="table-primary"{% endif %}>
-                        <th scope="row"><a href="#">{{ vehicle.car_registration }}</a></th>
+                        <th scope="row"><a href="{{ path('vehicle_info', {vehicle: vehicle.car_registration}) }}">{{ vehicle.car_registration }}</a></th>
                         <td>{{ vehicle.make }}</td>
                         <td>{{ vehicle.model }}</td>
                         <td>£ {{ vehicle.car_price }}</td>

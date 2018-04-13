@@ -2,22 +2,20 @@
 
 {% block content %}
     <div class="col-md-12">
-       individual customer details. (ID (readonly))
 
     <div>
         <hr />
-        <i class="fa fa-user fa-fw"></i> <br />
-        First Name <br />
-        Last Name <br />
+        <i class="fa fa-user fa-fw"></i> Name:<br />
+         {{ customer.first_name }}&nbsp;{{ customer.last_name }}
         <hr />
-        <i class="fa fa-home fa-fw"></i> <br />
-        Street Name <br />
-        City <br />
-        Postcode <br />
+        <i class="fa fa-home fa-fw"></i> Address:<br />
+        {{ customer.street }} <br />
+        {{ customer.city }} <br />
+        {{ customer.post_code }} <br />
         <hr />
-        <i class="fa fa-phone fa-fw"></i> <br />
-        Mobile No. <br />
-        Email Address <br />
+        <i class="fa fa-phone fa-fw"></i> Contact:<br />
+        {{ customer.mobile }} <br />
+        {{ customer.email }} <br />
     </div>
         <hr />
         <button type="button" class="btn btn-primary btn-sm">Edit Customer</button>

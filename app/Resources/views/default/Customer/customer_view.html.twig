@@ -15,7 +15,7 @@
 
                 {% for customer in customers %}
                     <tr>
-                        <th scope="row"><a href="#">{{ customer.first_name }}&nbsp;{{ customer.last_name }}</a></th>
+                        <th scope="row"><a href="{{ path('customer_info', {customer: customer.id}) }}">{{ customer.first_name }}&nbsp;{{ customer.last_name }}</a></th>
                         <td>{{ customer.post_code }}</td>
                         <td>{{ customer.mobile }}</td>
                         <td>{{ customer.email }}</td>

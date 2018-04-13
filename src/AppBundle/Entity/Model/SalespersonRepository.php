@@ -11,7 +11,7 @@ class SalespersonRepository extends EntityRepository
      *
      * @return integer
      */
-    public function findSalesPerson($salesperson) {
+    public function findSalesperson($salesperson) {
 
 
         $sql = "
@@ -35,11 +35,17 @@ class SalespersonRepository extends EntityRepository
 
         $sql = "
             UPDATE salesperson
-            SET first_name = '$firstName', last_name = '$lastName'
-            WHERE salesperson_id = $id
+            SET first_name = :firstName,
+            last_name = :lastName
+            WHERE salesperson_id = :id
         ";
 
         $em = $this->getEntityManager();
-        $em->getConnection()->executeQuery($sql);
+        $em->getConnection()->executeQuery($sql, [
+            'firstName' => $firstName,
+            'lastName'  => $lastName,
+            'id' => $id,
+            ]
+        );
     }
 }

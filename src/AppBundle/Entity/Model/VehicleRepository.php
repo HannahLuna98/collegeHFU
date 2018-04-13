@@ -14,9 +14,16 @@ class VehicleRepository extends EntityRepository
     public function findVehicle($vehicle) {
 
         $sql = "
-            SELECT *
+            SELECT
+            car_registration as id,
+            make,
+            model,
+            colour,
+            capacity,
+            car_price,
+            car_available
             FROM car
-            WHERE car_registration = $vehicle
+            WHERE car_registration = '$vehicle'
         ";
 
         $em = $this->getEntityManager();
