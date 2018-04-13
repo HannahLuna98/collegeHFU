@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Hire;
 
+use AppBundle\Entity\Hire;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,11 +26,15 @@ class HireController extends Controller
     }
 
     /**
-     * @Route("/hire/view", name="hire_view")
+     * @Route("/hire/view/", name="hire_view")
      */
     public function viewAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository(Hire::class);
+
         return $this->render('default/Hire/hire_view.html.twig', [
+                'hires' => $repo->viewAllHires()
             ]
         );
     }

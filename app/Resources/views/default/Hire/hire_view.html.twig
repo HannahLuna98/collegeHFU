@@ -12,18 +12,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row"><a href="{{ path('hire_info') }}">0133</a></th>
-                    <td>Billy Boye</td>
-                    <td>AK18 OBE</td>
-                    <td>23/02/2018</td>
-                </tr>
-                <tr>
-                    <th scope="row"><a href="{{ path('hire_info') }}">0023</a></th>
-                    <td>Gordon Freeman</td>
-                    <td>MV06 MDF</td>
-                    <td>03/05/2018</td>
-                </tr>
+
+                {% for hire in hires %}
+                    <tr>
+                        <th scope="row"><a href="#">{{ hire.hire_id }}</a></th>
+                        <td>{{ hire.first_name }} {{ hire.last_name }}</td>
+                        <td>{{ hire.car_registration }}</td>
+                        <td>{{ hire.return_date }}</td>
+                    </tr>
+                {% endfor %}
+
                 </tbody>
             </table>
 

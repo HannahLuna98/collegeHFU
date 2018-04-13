@@ -10,19 +10,20 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Customer Details
  *
  * @package Database
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\Model\VehicleRepository")
  * @ORM\Table(name="car")
  */
 class Vehicle
 {
     /**
      * The Car reg
+     * @ORM\Id
      * @ORM\Column(type="char", length=8, name="car_registration")
      */
     protected $carReg;
 
     /**
-     * @ORM\Column(type="varchar", length=50, name="make")
+     * @ORM\Column(type="string", length=50, name="make")
      * @Assert\Length(
      *     max = 50,
      *     min = 2,
@@ -31,7 +32,7 @@ class Vehicle
     protected $make;
 
     /**
-     * @ORM\Column(type="varchar", length=50, name="model")
+     * @ORM\Column(type="string", length=50, name="model")
      * @Assert\Length(
      *     max = 50,
      *     min = 2,
@@ -48,7 +49,7 @@ class Vehicle
     protected $capacity;
 
     /**
-     * @ORM\Column(type="decimal" name="price")
+     * @ORM\Column(type="decimal", name="price")
      */
     protected $price;
 

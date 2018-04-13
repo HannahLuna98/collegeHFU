@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Customer Details
  *
  * @package Database
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\Model\HireRepository")
  * @ORM\Table(name="hire")
  */
 class Hire
@@ -18,14 +18,14 @@ class Hire
     /**
      * The primary identifier
      *
-     * @ORM\ID
+     * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
-     * @ORM\Column(type="boolean", name=""insurance_cover")
+     * @ORM\Column(type="boolean", name="insurance_cover")
      */
     protected $insuranceCover;
 
@@ -46,7 +46,6 @@ class Hire
      */
     protected $daysHired;
 
-    //Join Attempt??
     /**
      * @ORM\ManyToOne(targetEntity="Customer")
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="customer_id")

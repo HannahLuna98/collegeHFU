@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Vehicle;
 
+use AppBundle\Entity\Vehicle;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +30,11 @@ class VehicleController extends Controller
  */
     public function viewAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository(Vehicle::class);
+
         return $this->render('default/Vehicle/vehicle_view.html.twig', [
+                'vehicles' => $repo->viewAllVehicles()
             ]
         );
     }

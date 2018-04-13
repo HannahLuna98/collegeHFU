@@ -13,41 +13,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="table-active">
-                    <th scope="row"><a href="{{ path('vehicle_info') }}">MV06 MDF</a></th>
-                    <td>Nissan</td>
-                    <td>Micra</td>
-                    <td>£250</td>
-                    <td>Unavailable</td>
-                </tr>
-                <tr>
-                    <th scope="row"><a href="{{ path('vehicle_info') }}">AK18 OBE</a></th>
-                    <td>Volkswagen</td>
-                    <td>Pass</td>
-                    <td>£500</td>
-                    <td>Available</td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row"><a href="{{ path('vehicle_info') }}">MV06 MDF</a></th>
-                    <td>Nissan</td>
-                    <td>Micra</td>
-                    <td>£250</td>
-                    <td>Unavailable</td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row"><a href="{{ path('vehicle_info') }}">MV06 MDF</a></th>
-                    <td>Nissan</td>
-                    <td>Micra</td>
-                    <td>£250</td>
-                    <td>Unavailable</td>
-                </tr>
-                <tr>
-                    <th scope="row"><a href="{{ path('vehicle_info') }}">AK18 OBE</a></th>
-                    <td>Volkswagen</td>
-                    <td>Pass</td>
-                    <td>£500</td>
-                    <td>Available</td>
-                </tr>
+
+                {% for vehicle in vehicles %}
+                    <tr {% if not vehicle.car_available %}class="table-primary"{% endif %}>
+                        <th scope="row"><a href="#">{{ vehicle.car_registration }}</a></th>
+                        <td>{{ vehicle.make }}</td>
+                        <td>{{ vehicle.model }}</td>
+                        <td>£ {{ vehicle.car_price }}</td>
+                        <td>{% if vehicle.car_available %}<span class="fa fa-check"></span>{% endif %}</td>
+                    </tr>
+                {% endfor %}
+
                 </tbody>
             </table>
 
