@@ -51,7 +51,7 @@ class CustomerController extends Controller
     /**
      * @Route("/customer/edit/{customer}", name="customer_edit")
      */
-    public function editAction(Request $request, Customer $customer)
+    public function editAction(Request $request, $customer)
     {
         // Get repository
         // Load custoemr entity from raw query based on id
@@ -60,7 +60,7 @@ class CustomerController extends Controller
         $repo = $em->getRepository(Customer::class);
         $customer = $repo->findCustomer($customer);
 
-        $form = $this->createForm(CustomerType::class, $customer);
+        $form = $this->createForm(CustomerType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
