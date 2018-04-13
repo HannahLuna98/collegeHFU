@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Customer Details
  *
  * @package Database
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\Model\SalespersonRepository")
  * @ORM\Table(name="salesperson")
  */
 class Salesperson
@@ -26,7 +26,7 @@ class Salesperson
 
     /**
      * Customer's First Name
-     * @ORM\Column(type="varchar", length=35, name="first_name")
+     * @ORM\Column(type="string", length=35, name="first_name")
      * @Assert\Length(
      *     max = 35,
      *     min = 2,
@@ -36,7 +36,7 @@ class Salesperson
 
     /**
      * Customer's Last Name
-     * @ORM\Column(type="varchar", length=35, name="last_name")
+     * @ORM\Column(type="string", length=35, name="last_name")
      * @Assert\Length(
      *     max = 35,
      *     min = 2,

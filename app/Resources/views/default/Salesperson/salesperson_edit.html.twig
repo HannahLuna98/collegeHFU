@@ -12,36 +12,23 @@
             <div class="col-md-9">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ path('home') }}"><i class="fa fa-home"></i></a></li>
-                    <li class="breadcrumb-item"><a href="{{ path('salesperson_view') }}">&nbsp;My Area</a></li>
+                    <li class="breadcrumb-item"><a href="{{ path('salesperson_view', {salesperson: salesperson.id}) }}">&nbsp;My Area</a></li>
                     <li class="breadcrumb-item active">&nbsp;Edit Details</li>
                 </ol>
+                <div class="col-md-12">
+                    <div>
+                        {{ form_start(form) }}
+                        {{ form_errors(form) }}
+                        <div>
+                            {{ form_row(form.first_name) }}
+                            {{ form_row(form.last_name) }}
+                        </div>
+                        {{ form_rest(form) }}
 
-                (ID (readonly))
-                <hr />
-                First Name <br />
-                Last Name <br />
-                <hr />
+                        <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                        {{ form_end(form) }}
+                    </div>
 
-                {#<div class="col-md-12">#}
-
-                    {#<div>#}
-                        {#{{ form_start(form) }}#}
-                        {#{{ form_errors(form) }}#}
-                        {#<div>#}
-                            {#{{ form_row(form.firstName) }}#}
-                            {#{{ form_row(form.lastName) }}#}
-                        {#</div>#}
-                        {#{{ form_rest(form) }}#}
-                        {#{{ form_end(form) }}#}
-                    {#</div>#}
-
-                    {#<a href="{{ path('salesperson_edit') }}">#}
-                        {#<button type="button" class="btn btn-primary btn-sm">Edit</button>#}
-                    {#</a>#}
-                {#</div>#}
-
-                <div class="pull-right">
-                    <button type="button" class="btn btn-primary btn-sm">Update</button>
                 </div>
             </div>
         </div>

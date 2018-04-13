@@ -2,13 +2,14 @@
 
 {% block content %}
     <div class="col-md-12">
-testsalespersonview (id (readonly))
+        Your ID: {{ salesperson.id }}
         <hr />
-        First Name <br />
-        Last Name <br />
+        First Name: {{ salesperson.firstName }} <br />
+        Last Name: {{ salesperson.lastName }} <br />
+        Commission: 5%<br />
         <hr />
 
-        <a href="{{ path('salesperson_edit') }}">
+        <a href="{{ path('salesperson_edit', {salesperson: salesperson.id}) }}">
         <button type="button" class="btn btn-primary btn-sm">Edit</button>
         </a>
     </div>

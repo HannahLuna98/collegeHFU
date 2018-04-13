@@ -26,38 +26,39 @@ class SalespersonController extends Controller
         return $this->render('default/Salesperson/salesperson_help.html.twig');
     }
 
-//    /**
-//     * @Route("/salesperson/edit", name="salesperson_edit")
-//     */
-//    public function editAction(Request $request)
-//    {
-//        return $this->render('default/Salesperson/salesperson_edit.html.twig');
-//    }
-
     /**
-     * @Route("/salesperson/view", name="salesperson_view")
+     * @Route("/salesperson/view/{salesperson}", name="salesperson_view")
      */
-    public function viewAction()
+    public function viewAction(Salesperson $salesperson)
     {
         return $this->render(
             'default/Salesperson/salesperson_view.html.twig', [
-                'salesperson' => 1
+                'salesperson' => $salesperson
             ]
         );
     }
 
     /**
-     * @Route("/salesperson/edit", name="salesperson_edit")
+     * @Route("/salesperson/edit/{salesperson}", name="salesperson_edit")
      */
-    public function editAction(Request $request, Salesperson $salesperson)
+    public function editAction(Request $request, $salesperson)
     {
+        // Get repository
+        // Load salesperson entity from raw query based on id
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository(Salesperson::class);
+        $salesperson = $repo->findSalesPerson($salesperson);
+
         $form = $this->createForm(SalespersonType::class, $salesperson);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($salesperson);
-            $em->flush();
+
+            $firstName = $form->get('firstName')->getData();
+            $lastName = $form->get('lastName')->getData();
+
+            $repo->updateSalesperson($firstName, $lastName, $salesperson['id']);
         }
 
         return $this->render(

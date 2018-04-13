@@ -115,7 +115,7 @@
                     <div class="col-md-4">
 
                         <div class="card text-white bg-dark mb-3">
-                            <div class="card-header"><a class="text-white" href="{{ path('salesperson_view', {salesperson: salesperson}) }}">
+                            <div class="card-header"><a class="text-white" href="{{ path('salesperson_view', {salesperson: 1}) }}">
                                     <h4><i class="fa fa-pie-chart fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Analysis</h4></a>
                             </div>
                             <div class="card-body">
@@ -137,19 +137,19 @@
                     <div class="col-md-4">
 
                         <div class="card text-white bg-dark mb-3">
-                            <div class="card-header"><a class="text-white" href="{{ path('salesperson_view', {salesperson: salesperson} )}}">
+                            <div class="card-header"><a class="text-white" href="{{ path('salesperson_view', {salesperson: 1} )}}">
                                     <h4><i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;My Area</h4></a>
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title">View and Manage Your Personal Information</h4>
                                 <div class="list-group">
                                     <p class="list-group-item list-group-item-action text-primary">
-                                        <a href="{{ path('salesperson_view', {salesperson: salesperson}) }}">
+                                        <a href="{{ path('salesperson_view', {salesperson: 1}) }}">
                                             View Your Details
                                         </a>
                                     </p>
                                     <p class="list-group-item list-group-item-action text-primary">
-                                        <a href="{{ path('salesperson_edit') }}">
+                                        <a href="{{ path('salesperson_edit', {salesperson: 1}) }}">
                                             Edit Your Details
                                         </a>
                                     </p>

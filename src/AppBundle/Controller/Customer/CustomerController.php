@@ -30,7 +30,6 @@ class CustomerController extends Controller
     public function viewAction(Request $request)
     {
         return $this->render('default/Customer/customer_view.html.twig', [
-            'salesperson' => 1
             ]
         );
     }

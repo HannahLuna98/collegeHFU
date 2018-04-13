@@ -25,13 +25,13 @@ class SalespersonType extends AbstractType
     {
         $builder
             ->add(
-                'firstName', null, [
-                'label' => 'First Name',
+                'first_name', null, [
+                'label' => 'First Name:',
                 ]
             )
             ->add(
-                'lastName', null, [
-                'label' => 'Last Name',
+                'last_name', null, [
+                'label' => 'Last Name:',
                 ]
             );
     }
@@ -50,7 +50,6 @@ class SalespersonType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'data_class' => Salesperson::class,
             ]
         );
     }

@@ -22,7 +22,7 @@ class GraphController extends Controller
     public function viewAction(Request $request)
     {
         return $this->render('default/Graph/graph_view.html.twig', [
-            'salesperson' => 1
+
             ]
         );
     }

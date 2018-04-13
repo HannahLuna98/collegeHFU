@@ -30,7 +30,6 @@ class HistoryController extends Controller
     public function viewAction(Request $request)
     {
         return $this->render('default/History/history_view.html.twig', [
-            'salesperson' => 1
             ]
         );
     }
