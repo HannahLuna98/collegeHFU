@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Customer Details
  *
  * @package Database
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\Model\CustomerRepository")
  * @ORM\Table(name="customer")
  */
 class Customer
@@ -18,7 +18,7 @@ class Customer
     /**
      * The primary identifier
      *
-     * @ORM\ID
+     * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
