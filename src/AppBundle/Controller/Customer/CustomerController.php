@@ -65,8 +65,8 @@ class CustomerController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $firstName = $form->get('firstName')->getData();
-            $lastName = $form->get('lastName')->getData();
+            $firstName = $form->get('first_name')->getData();
+            $lastName = $form->get('last_name')->getData();
             $street = $form->get('street')->getData();
             $city = $form->get('city')->getData();
             $postcode = $form->get('postcode')->getData();

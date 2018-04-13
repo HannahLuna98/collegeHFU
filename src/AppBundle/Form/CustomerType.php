@@ -25,12 +25,12 @@ class CustomerType extends AbstractType
     {
         $builder
             ->add(
-                'firstName', null, [
+                'first_name', null, [
                     'label' => 'First Name',
                 ]
             )
             ->add(
-                'lastName', null, [
+                'last_name', null, [
                     'label' => 'Last Name',
                 ]
             )
@@ -45,7 +45,7 @@ class CustomerType extends AbstractType
                 ]
             )
             ->add(
-                'postCode', null, [
+                'postcode', null, [
                     'label' => 'Postcode',
                 ]
             )
