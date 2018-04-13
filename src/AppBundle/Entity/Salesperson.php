@@ -18,7 +18,7 @@ class Salesperson
     /**
      * The primary identifier
      *
-     * @ORM\ID
+     * @ORM\Id
      * @ORM\Column(type="integer", name="salesperson_id")
      * @ORM\GeneratedValue(strategy="AUTO")
      */

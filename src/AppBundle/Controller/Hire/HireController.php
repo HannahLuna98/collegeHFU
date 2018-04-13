@@ -29,7 +29,10 @@ class HireController extends Controller
      */
     public function viewAction(Request $request)
     {
-        return $this->render('default/Hire/hire_view.html.twig');
+        return $this->render('default/Hire/hire_view.html.twig', [
+            'salesperson' => 1
+            ]
+        );
     }
 
     /**

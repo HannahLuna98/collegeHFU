@@ -29,7 +29,10 @@ class VehicleController extends Controller
  */
     public function viewAction(Request $request)
     {
-        return $this->render('default/Vehicle/vehicle_view.html.twig');
+        return $this->render('default/Vehicle/vehicle_view.html.twig', [
+            'salesperson' => 1
+            ]
+        );
     }
 
 

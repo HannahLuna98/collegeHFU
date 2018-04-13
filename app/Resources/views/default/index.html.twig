@@ -115,7 +115,7 @@
                     <div class="col-md-4">
 
                         <div class="card text-white bg-dark mb-3">
-                            <div class="card-header"><a class="text-white" href="{{ path('salesperson_view') }}">
+                            <div class="card-header"><a class="text-white" href="{{ path('salesperson_view', {salesperson: salesperson}) }}">
                                     <h4><i class="fa fa-pie-chart fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;Analysis</h4></a>
                             </div>
                             <div class="card-body">
@@ -137,14 +137,14 @@
                     <div class="col-md-4">
 
                         <div class="card text-white bg-dark mb-3">
-                            <div class="card-header"><a class="text-white" href="{{ path('salesperson_view') }}">
+                            <div class="card-header"><a class="text-white" href="{{ path('salesperson_view', {salesperson: salesperson} )}}">
                                     <h4><i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;My Area</h4></a>
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title">View and Manage Your Personal Information</h4>
                                 <div class="list-group">
                                     <p class="list-group-item list-group-item-action text-primary">
-                                        <a href="{{ path('salesperson_view') }}">
+                                        <a href="{{ path('salesperson_view', {salesperson: salesperson}) }}">
                                             View Your Details
                                         </a>
                                     </p>
