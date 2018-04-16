@@ -73,7 +73,8 @@ class HireController extends Controller
             $rentDate = $form->get('rent_date')->getData();
             $returnDate = $form->get('return_date')->getData();
 
-            $repo->addNewHire($customer, $carReg, $insuranceCover, $rentDate, $returnDate);
+            $vehicle = $em->getRepository(Vehicle::class)->findVehicle($carReg);
+            $repo->addNewHire($customer, $carReg, $insuranceCover, $rentDate, $returnDate, $vehicle['car_price']);
 
             return $this->redirectToRoute('hire_view');
         }

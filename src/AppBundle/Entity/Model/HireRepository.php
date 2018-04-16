@@ -26,6 +26,7 @@ class HireRepository extends EntityRepository
             rent_date,
             return_date,
             days_hired,
+            car.car_price * days_hired as hire_price,
             hire_price
             FROM hire
             LEFT JOIN customer on hire.customer_id = customer.customer_id
@@ -56,6 +57,7 @@ class HireRepository extends EntityRepository
             rent_date,
             return_date,
             days_hired,
+            car.car_price * days_hired as hire_price,
             hire_price           
             FROM hire
             LEFT JOIN customer on hire.customer_id = customer.customer_id
@@ -73,14 +75,16 @@ class HireRepository extends EntityRepository
     {
 
         $sql = '
-            UPDATE hire
-            SET 
-            customer_id = :customerId,
-            car_registration = :carReg,
-            insurance_cover = :insuranceCover,
-            rent_date = :rentDate,
-            return_date = :returnDate,
-            days_hired = DATEDIFF(return_date, rent_date)
+            UPDATE hire h
+              LEFT JOIN car car ON car.car_registration = h.car_registration
+            SET
+              h.customer_id = :customerId,
+              h.car_registration = :carReg,
+              h.insurance_cover = :insuranceCover,
+              h.rent_date = :rentDate,
+              h.return_date = :returnDate,
+              h.days_hired = (DATEDIFF(h.return_date, h.rent_date) +1),
+              h.hire_price = car.car_price * (DATEDIFF(h.return_date, h.rent_date) +1)
             WHERE hire_id = :hireId
         ';
 
@@ -96,7 +100,7 @@ class HireRepository extends EntityRepository
         );
     }
 
-    public function addNewHire($customerId, $carReg, $insuranceCover, $rentDate, $returnDate)
+    public function addNewHire($customerId, $carReg, $insuranceCover, $rentDate, $returnDate, $price)
     {
 
         $sql = '
@@ -106,13 +110,17 @@ class HireRepository extends EntityRepository
               insurance_cover,
               rent_date,
               return_date,
-              days_hired = DATEDIFF(return_date, rent_date)
+              days_hired,
+              hire_price
             ) VALUES (
               :customerId,
               :carReg,
               :insuranceCover,
               :rentDate,
-              :returnDate)
+              :returnDate,
+              (DATEDIFF(:returnDate, :rentDate) +1),
+              (DATEDIFF(:returnDate, :rentDate) +1) * :carPrice
+              )
         ';
 
         $em = $this->getEntityManager();
@@ -122,6 +130,7 @@ class HireRepository extends EntityRepository
                 'insuranceCover' => $insuranceCover,
                 'rentDate' => date_format($rentDate, 'Y-m-d'),
                 'returnDate' => date_format($returnDate, 'Y-m-d'),
+                'carPrice' => $price,
             ]
         );
     }
