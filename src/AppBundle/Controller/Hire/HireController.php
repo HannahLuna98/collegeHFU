@@ -94,6 +94,18 @@ class HireController extends Controller
         // Load hire entity from raw query based on id
         $em = $this->getDoctrine()->getManager();
 
+        $vehicles = $em->getRepository(Vehicle::class)->viewAllVehicles();
+        $customers = $em->getRepository(Customer::class)->viewAllCustomers();
+
+        $vehicleRegs = [];
+        $customerIds = [];
+        foreach ($vehicles as $vehicle) {
+            $vehicleRegs[$vehicle['car_registration']] = $vehicle['car_registration'];
+        }
+        foreach ($customers as $customer) {
+            $customerIds[$customer['first_name'] . ' ' . $customer['last_name'] . ': ' . $customer['id']] = $customer['id'];
+        }
+
         $repo = $em->getRepository(Hire::class);
         $hire = $repo->findHire($hire);
 
@@ -105,7 +117,7 @@ class HireController extends Controller
             $hire['return_date'] = new \DateTime($hire['return_date']);
         }
 
-        $form = $this->createForm(HireType::class, $hire);
+        $form = $this->createForm(HireType::class, $hire, ['vehicles' => $vehicleRegs, 'customers' => $customerIds]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

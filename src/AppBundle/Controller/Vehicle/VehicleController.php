@@ -60,10 +60,10 @@ class VehicleController extends Controller
             $available = $form->get('car_available')->getData();
             $price = $form->get('car_price')->getData();
 
-            $repo->updateVehicle($available, $price, $vehicle['id']);
+            $repo->updateVehicle($available, $price, $vehicle['car_registration']);
 
             return $this->redirectToRoute('vehicle_info', [
-                    'vehicle' => $vehicle['id']
+                    'vehicle' => $vehicle['car_registration']
                 ]
             );
         }

@@ -45,7 +45,7 @@ class HireType extends AbstractType
             )
             ->add(
                 'customer_id', ChoiceType::class, [
-                    'label' => 'Customer ID',
+                    'label' => 'Customer Name: ID',
                     'choices' => $customers,
                 ]
             )
