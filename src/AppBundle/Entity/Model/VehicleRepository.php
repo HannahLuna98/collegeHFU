@@ -36,14 +36,16 @@ class VehicleRepository extends EntityRepository
 
         $sql = '
             SELECT 
-            car_registration,
+            car.car_registration,
             make,
             model,
             colour,
             capacity,
             car_price,
-            car_available
+            car_available,
+            IF(hire.rent_date < NOW() AND hire.return_date > NOW(), 1, 0) as booked
             FROM car
+            LEFT JOIN hire ON hire.car_registration = car.car_registration
         ';
 
         $em = $this->getEntityManager();
@@ -101,6 +103,28 @@ class VehicleRepository extends EntityRepository
                 'capacity' => $capacity,
                 'price' => $price,
                 'available' => $available,
+            ]
+        );
+    }
+
+    public function isVehicleAvailableBetween($carReg, $rentDate, $returnDate)
+    {
+        $sql = '
+            SELECT *
+            FROM hire h
+            WHERE h.car_registration = :car_registration
+            AND (
+              DATE(date_from) <= :date_from AND DATE(date_to) >= :date_to
+              OR DATE(date_from) >= :date_from AND DATE(date_to) <= :date_to 
+              OR DATE(date_from) BETWEEN :date_from AND :date_to
+              OR DATE(date_to) BETWEEN :date_from AND :date_to
+            )               
+        ';
+
+        $em = $this->getEntityManager();
+        $em->getConnection()->executeQuery($sql, [
+                'car_registration' => $carReg,
+                ''
             ]
         );
     }

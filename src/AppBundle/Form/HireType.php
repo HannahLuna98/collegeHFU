@@ -3,12 +3,16 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Vehicle;
+use AppBundle\Validator\Constraints\HireConstraint;
+use AppBundle\Validator\Constraints\HireValidator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Exception\AccessException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Callback;
+use Symfony\Component\Validator\Constraints\CallbackValidator;
 
 class HireType extends AbstractType
 {
@@ -73,6 +77,14 @@ class HireType extends AbstractType
             [
                 'vehicles',
                 'customers'
+            ]
+        );
+
+        $resolver->setDefaults(
+            [
+                'constraints' => [
+                    new HireConstraint()
+                ]
             ]
         );
     }

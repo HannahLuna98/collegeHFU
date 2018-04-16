@@ -84,7 +84,7 @@ class HireRepository extends EntityRepository
               h.rent_date = :rentDate,
               h.return_date = :returnDate,
               h.days_hired = (DATEDIFF(h.return_date, h.rent_date) +1),
-              h.hire_price = car.car_price * (DATEDIFF(h.return_date, h.rent_date) +1)
+              h.hire_price = car.car_price * (DATEDIFF(h.return_date, h.rent_date) +1) + IF(:insuranceCover, 0, 60)
             WHERE hire_id = :hireId
         ';
 
@@ -119,7 +119,7 @@ class HireRepository extends EntityRepository
               :rentDate,
               :returnDate,
               (DATEDIFF(:returnDate, :rentDate) +1),
-              (DATEDIFF(:returnDate, :rentDate) +1) * :carPrice
+              (DATEDIFF(:returnDate, :rentDate) +1) * :carPrice + IF(:insuranceCover, 0, 60)
               )
         ';
 

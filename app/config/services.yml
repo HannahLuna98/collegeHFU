@@ -33,3 +33,9 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    app.hire_validator:
+                class: AppBundle\Validator\Constraints\HireValidator
+                arguments: ['@doctrine.orm.default_entity_manager']
+                tags:
+                    - { name: 'validator.constraint_validator' }
