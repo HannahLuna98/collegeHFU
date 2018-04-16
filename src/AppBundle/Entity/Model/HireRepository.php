@@ -67,19 +67,16 @@ class HireRepository extends EntityRepository
         return $query->fetchAll();
     }
 
-    public function updateHire($customerId, $firstName, $lastName, $carReg, $insuranceCover, $rentDate, $returnDate, $daysHired, $hireId) {
+    public function updateHire($customerId, $carReg, $insuranceCover, $rentDate, $returnDate, $hireId) {
 
         $sql = "
             UPDATE hire
             SET 
             customer.customer_id = :customerId,
-            customer.first_name = :firstName,
-            customer.last_name = :lastName,
             car.car_registration = :carReg,
             insurance_cover = :insuranceCover,
             rent_date = :rentDate,
             return_date = :returnDate,
-            days_hired = :daysHired           
             FROM hire
             LEFT JOIN customer on hire.customer_id = customer.customer_id
             LEFT JOIN salesperson on hire.salesperson_id = salesperson.salesperson_id
@@ -91,18 +88,15 @@ class HireRepository extends EntityRepository
         $em = $this->getEntityManager();
         $em->getConnection()->executeQuery($sql, [
                 'customerId' => $customerId,
-                'firstName' => $firstName,
-                'lastName' => $lastName,
                 'carReg' => $carReg,
                 'insuranceCover' => $insuranceCover,
-                'rentDate' => $rentDate,
-                'returnDate' => $returnDate,
-                'daysHired' => $daysHired,
+                'rentDate' => date_format($rentDate, 'Y-m-d'),
+                'returnDate' => date_format($returnDate, 'Y-m-d'),
             ]
         );
     }
 
-    public function addNewHire($customerId, $salespersonId, $carReg, $insuranceCover, $rentDate, $returnDate, $daysHired) {
+    public function addNewHire($customerId, $salespersonId, $carReg, $insuranceCover, $rentDate, $returnDate) {
 
         $sql = '
             INSERT INTO hire (
@@ -112,7 +106,6 @@ class HireRepository extends EntityRepository
               insurance_cover,
               rent_date,
               return_date,
-              days_hired,              
             ) VALUES (
               :customerId,
               :salespersonId,
@@ -120,7 +113,6 @@ class HireRepository extends EntityRepository
               :insuranceCover,
               :rentDate,
               :returnDate,
-              :daysHired
             )
         ';
 
@@ -130,9 +122,8 @@ class HireRepository extends EntityRepository
                 'salespersonId' => $salespersonId,
                 'carReg' => $carReg,
                 'insuranceCover' => $insuranceCover,
-                'rentDate' => $rentDate,
-                'returnDate' => $returnDate,
-                'daysHired' => $daysHired,
+                'rentDate' => date_format($rentDate, 'Y-m-d'),
+                'returnDate' => date_format($returnDate, 'Y-m-d'),
             ]
         );
     }

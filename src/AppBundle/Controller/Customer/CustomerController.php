@@ -69,13 +69,13 @@ class CustomerController extends Controller
             $lastName = $form->get('last_name')->getData();
             $street = $form->get('street')->getData();
             $city = $form->get('city')->getData();
-            $postCode = $form->get('postcode')->getData();
+            $postCode = $form->get('post_code')->getData();
             $mobile = $form->get('mobile')->getData();
             $email = $form->get('email')->getData();
 
             $repo->updateCustomer($firstName, $lastName, $street, $city, $postCode, $mobile, $email, $customer['id']);
 
-            return $this->redirectToRoute('customer_view', [
+            return $this->redirectToRoute('customer_info', [
                     'customer' => $customer['id']
                 ]
             );

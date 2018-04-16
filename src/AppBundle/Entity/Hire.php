@@ -30,14 +30,14 @@ class Hire
     protected $insuranceCover;
 
     /**
-     * @ORM\Column(type="datetime", name="rent_date")
-     * @Assert\DateTime()
+     * @ORM\Column(type="date", name="rent_date")
+     * @Assert\Date())
      */
     protected $rentDate;
 
     /**
-     * @ORM\Column(type="datetime", name="return_date")
-     * @Assert\DateTime()
+     * @ORM\Column(type="date", name="return_date")
+     * @Assert\Date()
      */
     protected $returnDate;
 

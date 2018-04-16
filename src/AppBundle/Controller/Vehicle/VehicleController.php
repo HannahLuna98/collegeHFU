@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Vehicle;
 
 use AppBundle\Entity\Vehicle;
+use AppBundle\Form\VehicleType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,11 +41,38 @@ class VehicleController extends Controller
     }
 
     /**
-     * @Route("/vehicle/edit", name="vehicle_edit")
+     * @Route("/vehicle/edit/{vehicle}", name="vehicle_edit")
      */
-    public function editAction(Request $request)
+    public function editAction(Request $request, $vehicle)
     {
-        return $this->render('default/Vehicle/vehicle_edit.html.twig');
+        // Get repository
+        // Load vehicle entity from raw query based on id
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository(Vehicle::class);
+        $vehicle = $repo->findVehicle($vehicle);
+
+        $form = $this->createForm(VehicleType::class, $vehicle);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $available = $form->get('available')->getData();
+            $price = $form->get('price')->getData();
+
+            $repo->updateVehicle($available, $price, $vehicle['id']);
+
+            return $this->redirectToRoute('vehicle_info', [
+                    'vehicle' => $vehicle['id']
+                ]
+            );
+        }
+
+        return $this->render('default/Vehicle/vehicle_edit.html.twig', [
+            'form' => $form->createView(),
+            'vehicle' => $vehicle,
+            ]
+        );
     }
 
     /**

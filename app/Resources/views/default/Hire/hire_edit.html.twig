@@ -5,13 +5,12 @@
         {{ form_start(form) }}
         {{ form_errors(form) }}
         <div>
-            {{ form_row(form.customer_id) }}
-            {{ form_row(form.salesperson_id) }}
-            {{ form_row(form.car_registration) }}
-            {{ form_row(form.insurance_cover) }}
-            {{ form_row(form.rent_date) }}
-            {{ form_row(form.return_date) }}
-            {{ form_row(form.days_hired) }}
+            {{ dump(form) }}
+            {{ form_row(form.customer) }}
+            {{ form_row(form.carReg) }}
+            {{ form_row(form.insuranceCover) }}
+            {{ form_row(form.rentDate) }}
+            {{ form_row(form.returnDate) }}
         </div>
         {{ form_rest(form) }}
 

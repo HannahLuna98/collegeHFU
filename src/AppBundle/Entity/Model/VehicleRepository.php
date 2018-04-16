@@ -52,31 +52,22 @@ class VehicleRepository extends EntityRepository
         return $query->fetchAll();
     }
 
-    public function updateVehicle($carReg, $make, $model, $colour, $capacity, $price, $available) {
+    public function updateVehicle($available, $price, $carReg) {
 
         $sql = '
             UPDATE car
             SET 
-             car_registration = :carReg,
-             make = :make,
-             model = :model,
-             colour = :colour,
-             capacity = :capacity,
-             car_price = :price,
-             car_available = :available
+             car_available = :available,
+             car_price = :price
 
-            WHERE car_registration = :carReg
+            WHERE car_registration = :car_registration
         ';
 
         $em = $this->getEntityManager();
         $em->getConnection()->executeQuery($sql, [
-            'carReg' => $carReg,
-            'make' => $make,
-            'model' => $model,
-            'colour' => $colour,
-            'capacity' => $capacity,
-            'price' => $price,
-            'available' => $available,
+                'car_registration' => $carReg,
+                'available' => $available,
+                'price' => $price
             ]
         );
     }
@@ -90,17 +81,15 @@ class VehicleRepository extends EntityRepository
               model,
               colour,
               capacity,
-              colour,
               car_price,
-              car_available
             ) VALUES (
               :carReg,
               :make,
               :model,
               :colour,
               :capacity,
-              :price,
-              :available,)
+              :price
+              )
         ';
 
         $em = $this->getEntityManager();

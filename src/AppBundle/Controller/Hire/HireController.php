@@ -60,18 +60,22 @@ class HireController extends Controller
         $repo = $em->getRepository(Hire::class);
         $hire = $repo->findHire($hire);
 
-        $form = $this->createForm(HireType::class);
+        $form = $this->createForm(HireType::class, $hire);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $customerId = $form->get('customer_id')->getData();
-            $carReg = $form->get('car_registration')->getData();
-            $insuranceCover = $form->get('insurance_cover')->getData();
-            $rentDate = $form->get('rent_date')->getData();
-            $returnDate = $form->get('return_date')->getData();
-            $daysHired = $form->get('days_hired')->getData();
+            $customer = $form->get('customer')->getData();
+            $carReg = $form->get('carReg')->getData();
+            $insuranceCover = $form->get('insuranceCover')->getData();
+            $rentDate = $form->get('rentDate')->getData();
+            $returnDate = $form->get('returnDate')->getData();
 
-            $repo->updateCustomer($customerId, $carReg, $insuranceCover, $rentDate, $returnDate, $daysHired, $hire['id']);
+            $repo->updateHire($customer, $carReg, $insuranceCover, $rentDate, $returnDate, $hire['id']);
+
+            return $this->redirectToRoute('hire_info', [
+                    'hire' => $hire['id']
+                ]
+            );
         }
 
         return $this->render('default/Hire/hire_edit.html.twig', [

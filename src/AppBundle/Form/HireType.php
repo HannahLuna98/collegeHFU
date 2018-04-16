@@ -4,10 +4,13 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Hire;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\ReversedTransformer;
+use Symfony\Component\Intl\DateFormatter\DateFormat\Transformer;
 use Symfony\Component\OptionsResolver\Exception\AccessException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,7 +26,7 @@ class HireType extends AbstractType
     {
         $builder
             ->add(
-                'insuranceCover', ChoiceType::class, [
+                'insurance_cover', ChoiceType::class, [
                 'label' => 'Include Basic Insurance?',
                 'choices' => [
                     'Y' => 'Yes',
@@ -32,41 +35,27 @@ class HireType extends AbstractType
                 ]
             )
             ->add(
-                'rentDate', DateType::class, [
+                'rent_date', DateType::class, [
                 'label' => 'Rent Date',
-                'attr'  => [
-                    'placeholder' => 'e.g. yyyy-mm-dd',
-                    ]
                 ]
             )
             ->add(
-                'returnDate', DateType::class, [
+                'return_date', DateType::class, [
                 'label' => 'Return Date',
-                'attr'  => [
-                    'placeholder' => 'e.g. yyyy-mm-dd',
-                    ]
-                ]
-            )
-            ->add(
-                'daysHired', IntegerType::class, [
-                'label' => 'Days Hired',
                 ]
             )
             ->add(
                 'customer', null, [
-                'label' => 'Customer Name',
+                'label' => 'Customer ID',
                 ]
             )
             ->add(
-                'salesperson', null, [
-                'label' => 'Salesperson Name',
-                ]
-            )
-            ->add(
-                'carReg', null, [
+                'car_registration', null, [
                 'label' => 'Car Registration',
                 ]
             );
+        $builder->get('rent_date')->addModelTransformer(new ReversedTransformer(new DateTimeToStringTransformer()));
+        $builder->get('return_date')->addModelTransformer(new ReversedTransformer(new DateTimeToStringTransformer()));
     }
 
     /**
@@ -83,7 +72,6 @@ class HireType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'data_class' => Hire::class,
             ]
         );
     }

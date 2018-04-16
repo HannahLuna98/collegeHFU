@@ -3,10 +3,9 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Vehicle;
-use Doctrine\DBAL\Types\DecimalType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Exception\AccessException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,27 +22,7 @@ class VehicleType extends AbstractType
     {
         $builder
             ->add(
-                'carReg', null, [
-                    'label' => 'Car Registration',
-                ]
-            )
-            ->add(
-                'make', null, [
-                    'label' => 'Make',
-                ]
-            )
-            ->add(
-                'model', null, [
-                    'label' => 'Model',
-                ]
-            )
-            ->add(
-                'capacity', IntegerType::class, [
-                    'label' => 'Capacity',
-                ]
-            )
-            ->add(
-                'price', DecimalType::DECIMAL, [
+                'price', NumberType::class, [
                     'label' => 'Price',
                     'attr' => [
                         'placeholder' => '£ 0000.00'
@@ -54,8 +33,8 @@ class VehicleType extends AbstractType
                 'available', ChoiceType::class, [
                     'label' => 'Available?',
                     'choices' => [
-                        'Y' => 'Yes',
-                        'N' => 'No',
+                        'Yes' => 1,
+                        'No' => 0,
                     ]
                 ]
             );
@@ -75,7 +54,6 @@ class VehicleType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'data_class' => Vehicle::class,
             ]
         );
     }
