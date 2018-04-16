@@ -96,13 +96,12 @@ class HireRepository extends EntityRepository
         );
     }
 
-    public function addNewHire($customerId, $salespersonId, $carReg, $insuranceCover, $rentDate, $returnDate)
+    public function addNewHire($customerId, $carReg, $insuranceCover, $rentDate, $returnDate)
     {
 
         $sql = '
             INSERT INTO hire (
               customer_id,
-              salesperson_id,
               car_registration,
               insurance_cover,
               rent_date,
@@ -110,18 +109,15 @@ class HireRepository extends EntityRepository
               days_hired = DATEDIFF(return_date, rent_date)
             ) VALUES (
               :customerId,
-              :salespersonId,
               :carReg,
               :insuranceCover,
               :rentDate,
-              :returnDate,
-            )
+              :returnDate)
         ';
 
         $em = $this->getEntityManager();
         $em->getConnection()->executeQuery($sql, [
                 'customerId' => $customerId,
-                'salespersonId' => $salespersonId,
                 'carReg' => $carReg,
                 'insuranceCover' => $insuranceCover,
                 'rentDate' => date_format($rentDate, 'Y-m-d'),

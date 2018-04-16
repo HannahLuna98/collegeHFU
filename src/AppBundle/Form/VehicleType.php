@@ -22,6 +22,34 @@ class VehicleType extends AbstractType
     {
         $builder
             ->add(
+                'car_registration', null, [
+                    'label' => 'Car Registration',
+                    'attr' => [
+                        'placeholder' => 'You can not change a Car Registration once set, because it is used as a Primary Key'
+                    ]
+                ]
+            )
+            ->add(
+                'make', null, [
+                    'label' => 'Make',
+                ]
+            )
+            ->add(
+                'model', null, [
+                    'label' => 'Model',
+                ]
+            )
+            ->add(
+                'colour', null, [
+                    'label' => 'Colour',
+                ]
+            )
+            ->add(
+                'capacity', \Symfony\Component\Form\Extension\Core\Type\IntegerType::class, [
+                    'label' => 'Capacity',
+                ]
+            )
+            ->add(
                 'car_price', NumberType::class, [
                     'label' => 'Price',
                     'attr' => [
@@ -30,7 +58,7 @@ class VehicleType extends AbstractType
                 ]
             )
             ->add(
-                'available', ChoiceType::class, [
+                'car_available', ChoiceType::class, [
                     'label' => 'Available?',
                     'choices' => [
                         'Yes' => 1,

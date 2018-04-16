@@ -5,7 +5,7 @@
         Car details.
 
         <hr />
-        Car Registration : {{ vehicle.id }} <br />
+        Car Registration : {{ vehicle.car_registration }} <br />
         Make : {{ vehicle.make }}<br />
         Model : {{ vehicle.model }}<br />
         Capacity : {{ vehicle.capacity }}<br />
@@ -17,7 +17,7 @@
                 No
             {% endif %}<br />
         <hr />
-        <a href="{{ path('vehicle_edit', {vehicle: vehicle.id}) }}">
+        <a href="{{ path('vehicle_edit', {vehicle: vehicle.car_registration}) }}">
             <button type="button" class="btn btn-primary btn-sm">Edit Car</button>
         </a>
     </div>

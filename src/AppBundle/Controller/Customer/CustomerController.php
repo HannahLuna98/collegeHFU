@@ -43,9 +43,34 @@ class CustomerController extends Controller
     /**
      * @Route("/customer/new", name="customer_new")
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $customer = null)
     {
-        return $this->render('default/Customer/customer_new.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository(Customer::class);
+        $form = $this->createForm(CustomerType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $firstName = $form->get('first_name')->getData();
+            $lastName = $form->get('last_name')->getData();
+            $street = $form->get('street')->getData();
+            $city = $form->get('city')->getData();
+            $postCode = $form->get('post_code')->getData();
+            $mobile = $form->get('mobile')->getData();
+            $email = $form->get('email')->getData();
+
+            $repo->addNewCustomer($firstName, $lastName, $street, $city, $postCode, $mobile, $email);
+
+            return $this->redirectToRoute('customer_view');
+        }
+
+        return $this->render('default/Customer/customer_new.html.twig', [
+                'form' => $form->createView(),
+                'customer' => $customer
+            ]
+        );
     }
 
     /**

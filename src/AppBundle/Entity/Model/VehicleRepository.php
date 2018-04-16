@@ -15,7 +15,7 @@ class VehicleRepository extends EntityRepository
 
         $sql = "
             SELECT
-            car_registration as id,
+            car_registration,
             make,
             model,
             colour,
@@ -54,18 +54,17 @@ class VehicleRepository extends EntityRepository
 
     public function updateVehicle($available, $price, $carReg) {
 
-        $sql = '
+        $sql = "
             UPDATE car
             SET 
              car_available = :available,
              car_price = :price
 
-            WHERE car_registration = :car_registration
-        ';
+            WHERE car_registration = '$carReg'
+        ";
 
         $em = $this->getEntityManager();
         $em->getConnection()->executeQuery($sql, [
-                'car_registration' => $carReg,
                 'available' => $available,
                 'price' => $price
             ]
@@ -82,14 +81,15 @@ class VehicleRepository extends EntityRepository
               colour,
               capacity,
               car_price,
+              car_available
             ) VALUES (
               :carReg,
               :make,
               :model,
               :colour,
               :capacity,
-              :price
-              )
+              :price,
+              :available)
         ';
 
         $em = $this->getEntityManager();

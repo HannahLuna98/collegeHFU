@@ -57,7 +57,7 @@ class VehicleController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $available = $form->get('available')->getData();
+            $available = $form->get('car_available')->getData();
             $price = $form->get('car_price')->getData();
 
             $repo->updateVehicle($available, $price, $vehicle['id']);
@@ -76,11 +76,36 @@ class VehicleController extends Controller
     }
 
     /**
-     * @Route("/vehicle/new", name="vehicle_new")
+     * @Route("/vehicle/new/", name="vehicle_new")
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $vehicle = null)
     {
-        return $this->render('default/Vehicle/vehicle_new.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository(Vehicle::class);
+        $form = $this->createForm(VehicleType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $carReg = $form->get('car_registration')->getData();
+            $make = $form->get('make')->getData();
+            $model = $form->get('model')->getData();
+            $colour = $form->get('colour')->getData();
+            $capacity = $form->get('capacity')->getData();
+            $price = $form->get('car_price')->getData();
+            $available = $form->get('car_available')->getData();
+
+            $repo->addNewVehicle($carReg, $make, $model, $colour, $capacity, $price, $available);
+
+            return $this->redirectToRoute('vehicle_view');
+        }
+
+        return $this->render('default/Vehicle/vehicle_new.html.twig', [
+                'form' => $form->createView(),
+                'vehicle' => $vehicle
+            ]
+        );
     }
 
     /**

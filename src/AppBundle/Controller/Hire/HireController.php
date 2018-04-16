@@ -41,11 +41,34 @@ class HireController extends Controller
     }
 
     /**
-     * @Route("/hire/new", name="hire_new")
+     * @Route("/hire/new/", name="hire_new")
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $hire = null)
     {
-        return $this->render('default/Hire/hire_new.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository(Hire::class);
+        $form = $this->createForm(HireType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $customer = $form->get('customer_id')->getData();
+            $carReg = $form->get('car_registration')->getData();
+            $insuranceCover = $form->get('insurance_cover')->getData();
+            $rentDate = $form->get('rent_date')->getData();
+            $returnDate = $form->get('return_date')->getData();
+
+            $repo->addNewHire($customer, $carReg, $insuranceCover, $rentDate, $returnDate);
+
+            return $this->redirectToRoute('hire_view');
+        }
+
+        return $this->render('default/Hire/hire_new.html.twig', [
+                'form' => $form->createView(),
+                'customer' => $hire
+            ]
+        );
     }
 
     /**

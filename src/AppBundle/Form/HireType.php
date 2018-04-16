@@ -27,32 +27,32 @@ class HireType extends AbstractType
         $builder
             ->add(
                 'insurance_cover', ChoiceType::class, [
-                'label' => 'Include Basic Insurance?',
-                'choices' => [
-                    'Yes' => '1',
-                    'No' => '0',
-                    ]
+                    'label' => 'Include Basic Insurance?',
+                    'choices' => [
+                        'Yes' => '1',
+                        'No' => '0',
+                        ]
                 ]
             )
             ->add(
                 'rent_date', DateType::class, [
-                'label' => 'Rent Date',
+                    'label' => 'Rent Date',
                 ]
             )
             ->add(
                 'return_date', DateType::class, [
-                'label' => 'Return Date',
-                    'empty_data' => '',
+                    'label' => 'Return Date',
                 ]
             )
             ->add(
-                'customer_id', null, [
-                'label' => 'Customer ID',
+                'customer_id', ChoiceType::class, [
+                    'label' => 'Customer ID',
+                    'choices'
                 ]
             )
             ->add(
                 'car_registration', null, [
-                'label' => 'Car Registration',
+                    'label' => 'Car Registration',
                 ]
             );
     }

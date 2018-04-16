@@ -2,13 +2,14 @@
 
 {% block content %}
     <div class="col-md-12">
-        form to add a car
-        <hr />
-            Car Registration <br />
-            Make <br />
-            Model <br />
-            Capacity <br />
-            Price <br />
-            Available? <br />
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <div>
+
+        </div>
+        {{ form_rest(form) }}
+
+        <button type="submit" class="btn btn-primary btn-sm">Create</button>
+        {{ form_end(form) }}
     </div>
 {% endblock %}

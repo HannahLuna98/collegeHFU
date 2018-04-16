@@ -2,15 +2,21 @@
 
 {% block content %}
     <div class="col-md-12">
-        form to create a hire
-        <hr />
-            Customer ID <br />
-            Salesperson ID <br />
-            Car Registration <br />
-        <hr />
-            Include basic Insurance Plan? <br />
-            Rent Date <br />
-            Return Date <br />
-            Days Rented <br />
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <div>
+
+            {{ form_row(form.customer_id) }}
+            {{ form_row(form.car_registration) }}
+            {{ form_row(form.insurance_cover) }}
+            {{ form_row(form.rent_date) }}
+            {{ form_row(form.return_date) }}
+
+        </div>
+        {{ form_rest(form) }}
+
+        <button type="submit" class="btn btn-primary btn-sm">Create</button>
+        {{ form_end(form) }}
+
     </div>
 {% endblock %}

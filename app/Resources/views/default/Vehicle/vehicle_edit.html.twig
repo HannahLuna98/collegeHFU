@@ -6,8 +6,13 @@
         {{ form_errors(form) }}
         <div>
 
+            {{ form_row(form.car_registration,  { 'attr':{'disabled':'disabled'}} ) }}
+            {{ form_row(form.make,  { 'attr':{'disabled':'disabled'}} ) }}
+            {{ form_row(form.model,  { 'attr':{'disabled':'disabled'}} ) }}
+            {{ form_row(form.colour,  { 'attr':{'disabled':'disabled'}} ) }}
+            {{ form_row(form.capacity,  { 'attr':{'disabled':'disabled'}} ) }}
             {{ form_row(form.car_price) }}
-            {{ form_row(form.available) }}
+            {{ form_row(form.car_available) }}
 
         </div>
         {{ form_rest(form) }}
