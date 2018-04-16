@@ -60,7 +60,7 @@ class CustomerController extends Controller
         $repo = $em->getRepository(Customer::class);
         $customer = $repo->findCustomer($customer);
 
-        $form = $this->createForm(CustomerType::class);
+        $form = $this->createForm(CustomerType::class, $customer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -69,11 +69,16 @@ class CustomerController extends Controller
             $lastName = $form->get('last_name')->getData();
             $street = $form->get('street')->getData();
             $city = $form->get('city')->getData();
-            $postcode = $form->get('postcode')->getData();
+            $postCode = $form->get('postcode')->getData();
             $mobile = $form->get('mobile')->getData();
             $email = $form->get('email')->getData();
 
-            $repo->updateCustomer($firstName, $lastName, $street, $city, $postcode, $mobile, $email, $customer['id']);
+            $repo->updateCustomer($firstName, $lastName, $street, $city, $postCode, $mobile, $email, $customer['id']);
+
+            return $this->redirectToRoute('customer_view', [
+                    'customer' => $customer['id']
+                ]
+            );
         }
 
         return $this->render(

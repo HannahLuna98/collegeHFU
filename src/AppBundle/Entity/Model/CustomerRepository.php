@@ -54,7 +54,7 @@ class CustomerRepository extends EntityRepository
         return $query->fetchAll();
     }
 
-    public function updateCustomer($firstName, $lastName, $street, $city, $postcode, $mobile, $email,  $id) {
+    public function updateCustomer($firstName, $lastName, $street, $city, $postCode, $mobile, $email,  $id) {
 
         $sql = "
             UPDATE customer
@@ -74,7 +74,7 @@ class CustomerRepository extends EntityRepository
                 'lastName' => $lastName,
                 'street' => $street,
                 'city' => $city,
-                'postcode' => $postcode,
+                'postcode' => $postCode,
                 'mobile' => $mobile,
                 'email' => $email,
             ]

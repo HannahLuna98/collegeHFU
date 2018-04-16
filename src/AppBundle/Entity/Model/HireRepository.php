@@ -67,7 +67,7 @@ class HireRepository extends EntityRepository
         return $query->fetchAll();
     }
 
-    public function updateHire($customerId, $firstName, $lastName, $salespersonId, $carReg, $insuranceCover, $rentDate, $returnDate, $daysHired, $hireId) {
+    public function updateHire($customerId, $firstName, $lastName, $carReg, $insuranceCover, $rentDate, $returnDate, $daysHired, $hireId) {
 
         $sql = "
             UPDATE hire
@@ -75,7 +75,6 @@ class HireRepository extends EntityRepository
             customer.customer_id = :customerId,
             customer.first_name = :firstName,
             customer.last_name = :lastName,
-            salesperson.salesperson_id :salespersonId,
             car.car_registration = :carReg,
             insurance_cover = :insuranceCover,
             rent_date = :rentDate,
@@ -94,7 +93,6 @@ class HireRepository extends EntityRepository
                 'customerId' => $customerId,
                 'firstName' => $firstName,
                 'lastName' => $lastName,
-                'salespersonId' => $salespersonId,
                 'carReg' => $carReg,
                 'insuranceCover' => $insuranceCover,
                 'rentDate' => $rentDate,

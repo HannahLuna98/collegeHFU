@@ -54,7 +54,7 @@ class HireController extends Controller
     public function editAction(Request $request, $hire)
     {
         // Get repository
-        // Load customer entity from raw query based on id
+        // Load hire entity from raw query based on id
         $em = $this->getDoctrine()->getManager();
 
         $repo = $em->getRepository(Hire::class);
@@ -65,14 +65,13 @@ class HireController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $customerId = $form->get('customer_id')->getData();
-            $salespersonId = $form->get('salesperson_id')->getData();
             $carReg = $form->get('car_registration')->getData();
             $insuranceCover = $form->get('insurance_cover')->getData();
             $rentDate = $form->get('rent_date')->getData();
             $returnDate = $form->get('return_date')->getData();
             $daysHired = $form->get('days_hired')->getData();
 
-            $repo->updateCustomer($customerId, $salespersonId, $carReg, $insuranceCover, $rentDate, $returnDate, $daysHired, $hire['id']);
+            $repo->updateCustomer($customerId, $carReg, $insuranceCover, $rentDate, $returnDate, $daysHired, $hire['id']);
         }
 
         return $this->render('default/Hire/hire_edit.html.twig', [
