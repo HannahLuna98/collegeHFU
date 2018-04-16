@@ -2,15 +2,11 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\Hire;
+use AppBundle\Entity\Vehicle;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToStringTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\ReversedTransformer;
-use Symfony\Component\Intl\DateFormatter\DateFormat\Transformer;
 use Symfony\Component\OptionsResolver\Exception\AccessException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,13 +20,16 @@ class HireType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $vehicles = $options['vehicles'];
+        $customers = $options['customers'];
+
         $builder
             ->add(
                 'insurance_cover', ChoiceType::class, [
                     'label' => 'Include Basic Insurance?',
                     'choices' => [
-                        'Yes' => '1',
-                        'No' => '0',
+                        'Yes' => 1,
+                        'No' => 0,
                         ]
                 ]
             )
@@ -47,12 +46,13 @@ class HireType extends AbstractType
             ->add(
                 'customer_id', ChoiceType::class, [
                     'label' => 'Customer ID',
-                    'choices'
+                    'choices' => $customers,
                 ]
             )
             ->add(
-                'car_registration', null, [
+                'car_registration', ChoiceType::class, [
                     'label' => 'Car Registration',
+                    'choices' => $vehicles,
                 ]
             );
     }
@@ -69,8 +69,10 @@ class HireType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(
+        $resolver->setDefined(
             [
+                'vehicles',
+                'customers'
             ]
         );
     }
