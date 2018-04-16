@@ -22,7 +22,7 @@ class VehicleType extends AbstractType
     {
         $builder
             ->add(
-                'price', NumberType::class, [
+                'car_price', NumberType::class, [
                     'label' => 'Price',
                     'attr' => [
                         'placeholder' => '£ 0000.00'

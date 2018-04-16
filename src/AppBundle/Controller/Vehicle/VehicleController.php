@@ -58,7 +58,7 @@ class VehicleController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $available = $form->get('available')->getData();
-            $price = $form->get('price')->getData();
+            $price = $form->get('car_price')->getData();
 
             $repo->updateVehicle($available, $price, $vehicle['id']);
 
