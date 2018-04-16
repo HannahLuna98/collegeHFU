@@ -60,15 +60,23 @@ class HireController extends Controller
         $repo = $em->getRepository(Hire::class);
         $hire = $repo->findHire($hire);
 
+        if (isset($hire['rent_date'])) {
+            $hire['rent_date'] = new \DateTime($hire['rent_date']);
+        }
+
+        if (isset($hire['return_date'])) {
+            $hire['return_date'] = new \DateTime($hire['return_date']);
+        }
+
         $form = $this->createForm(HireType::class, $hire);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $customer = $form->get('customer')->getData();
-            $carReg = $form->get('carReg')->getData();
-            $insuranceCover = $form->get('insuranceCover')->getData();
-            $rentDate = $form->get('rentDate')->getData();
-            $returnDate = $form->get('returnDate')->getData();
+            $customer = $form->get('customer_id')->getData();
+            $carReg = $form->get('car_registration')->getData();
+            $insuranceCover = $form->get('insurance_cover')->getData();
+            $rentDate = $form->get('rent_date')->getData();
+            $returnDate = $form->get('return_date')->getData();
 
             $repo->updateHire($customer, $carReg, $insuranceCover, $rentDate, $returnDate, $hire['id']);
 

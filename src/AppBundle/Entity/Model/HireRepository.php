@@ -11,7 +11,8 @@ class HireRepository extends EntityRepository
      *
      * @return integer
      */
-    public function findHire($hire) {
+    public function findHire($hire)
+    {
 
         $sql = "
             SELECT 
@@ -25,7 +26,7 @@ class HireRepository extends EntityRepository
             rent_date,
             return_date,
             days_hired,
-            hire_price            
+            hire_price
             FROM hire
             LEFT JOIN customer on hire.customer_id = customer.customer_id
             LEFT JOIN salesperson on hire.salesperson_id = salesperson.salesperson_id
@@ -40,7 +41,8 @@ class HireRepository extends EntityRepository
         return $query->fetch();
     }
 
-    public function viewAllHires() {
+    public function viewAllHires()
+    {
 
         $sql = '
             SELECT 
@@ -67,26 +69,24 @@ class HireRepository extends EntityRepository
         return $query->fetchAll();
     }
 
-    public function updateHire($customerId, $carReg, $insuranceCover, $rentDate, $returnDate, $hireId) {
+    public function updateHire($customerId, $carReg, $insuranceCover, $rentDate, $returnDate, $hireId)
+    {
 
-        $sql = "
+        $sql = '
             UPDATE hire
             SET 
-            customer.customer_id = :customerId,
-            car.car_registration = :carReg,
+            customer_id = :customerId,
+            car_registration = :carReg,
             insurance_cover = :insuranceCover,
             rent_date = :rentDate,
             return_date = :returnDate,
-            FROM hire
-            LEFT JOIN customer on hire.customer_id = customer.customer_id
-            LEFT JOIN salesperson on hire.salesperson_id = salesperson.salesperson_id
-            LEFT JOIN car on hire.car_registration = car.car_registration
-
-            WHERE hire_id = $hireId
-        ";
+            days_hired = DATEDIFF(return_date, rent_date)
+            WHERE hire_id = :hireId
+        ';
 
         $em = $this->getEntityManager();
         $em->getConnection()->executeQuery($sql, [
+                'hireId' => $hireId,
                 'customerId' => $customerId,
                 'carReg' => $carReg,
                 'insuranceCover' => $insuranceCover,
@@ -96,7 +96,8 @@ class HireRepository extends EntityRepository
         );
     }
 
-    public function addNewHire($customerId, $salespersonId, $carReg, $insuranceCover, $rentDate, $returnDate) {
+    public function addNewHire($customerId, $salespersonId, $carReg, $insuranceCover, $rentDate, $returnDate)
+    {
 
         $sql = '
             INSERT INTO hire (
@@ -106,6 +107,7 @@ class HireRepository extends EntityRepository
               insurance_cover,
               rent_date,
               return_date,
+              days_hired = DATEDIFF(return_date, rent_date)
             ) VALUES (
               :customerId,
               :salespersonId,
@@ -128,7 +130,8 @@ class HireRepository extends EntityRepository
         );
     }
 
-    public function deleteHire($hire) {
+    public function deleteHire($hire)
+    {
 
         $sql = "
             DELETE *

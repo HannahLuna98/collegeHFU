@@ -29,8 +29,8 @@ class HireType extends AbstractType
                 'insurance_cover', ChoiceType::class, [
                 'label' => 'Include Basic Insurance?',
                 'choices' => [
-                    'Y' => 'Yes',
-                    'N' => 'No',
+                    'Yes' => '1',
+                    'No' => '0',
                     ]
                 ]
             )
@@ -42,10 +42,11 @@ class HireType extends AbstractType
             ->add(
                 'return_date', DateType::class, [
                 'label' => 'Return Date',
+                    'empty_data' => '',
                 ]
             )
             ->add(
-                'customer', null, [
+                'customer_id', null, [
                 'label' => 'Customer ID',
                 ]
             )
@@ -54,8 +55,6 @@ class HireType extends AbstractType
                 'label' => 'Car Registration',
                 ]
             );
-        $builder->get('rent_date')->addModelTransformer(new ReversedTransformer(new DateTimeToStringTransformer()));
-        $builder->get('return_date')->addModelTransformer(new ReversedTransformer(new DateTimeToStringTransformer()));
     }
 
     /**
