@@ -52,6 +52,11 @@ class Hire
     protected $hirePrice;
 
     /**
+     * @ORM\Column(type="decimal", name="total_wage")
+     */
+    protected $totalWage;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Customer")
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="customer_id")
      */
@@ -228,6 +233,24 @@ class Hire
     public function setHirePrice($hirePrice)
     {
         $this->hirePrice = $hirePrice;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTotalWage()
+    {
+        return $this->totalWage;
+    }
+
+    /**
+     * @param mixed $totalWage
+     * @return Hire
+     */
+    public function setTotalWage($totalWage)
+    {
+        $this->totalWage = $totalWage;
         return $this;
     }
 }

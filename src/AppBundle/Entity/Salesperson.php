@@ -50,11 +50,6 @@ class Salesperson
     protected $commission;
 
     /**
-     * @ORM\Column(type="decimal", name="total_wage")
-     */
-    protected $totalWage;
-
-    /**
      * @return mixed
      */
     public function getId()
@@ -123,24 +118,6 @@ class Salesperson
     public function setCommission($commission)
     {
         $this->commission = $commission;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTotalWage()
-    {
-        return $this->totalWage;
-    }
-
-    /**
-     * @param mixed $totalWage
-     * @return Salesperson
-     */
-    public function setTotalWage($totalWage)
-    {
-        $this->totalWage = $totalWage;
         return $this;
     }
 }

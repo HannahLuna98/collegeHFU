@@ -27,7 +27,9 @@ class HireRepository extends EntityRepository
             return_date,
             days_hired,
             car.car_price * days_hired as hire_price,
-            hire_price
+            hire_price,
+            hire_price * salesperson.commission as total_wage,
+            total_wage
             FROM hire
             LEFT JOIN customer on hire.customer_id = customer.customer_id
             LEFT JOIN salesperson on hire.salesperson_id = salesperson.salesperson_id
@@ -58,7 +60,9 @@ class HireRepository extends EntityRepository
             return_date,
             days_hired,
             car.car_price * days_hired as hire_price,
-            hire_price           
+            hire_price,
+            hire_price * salesperson.commission as total_wage,
+            total_wage           
             FROM hire
             LEFT JOIN customer on hire.customer_id = customer.customer_id
             LEFT JOIN salesperson on hire.salesperson_id = salesperson.salesperson_id
@@ -84,7 +88,8 @@ class HireRepository extends EntityRepository
               h.rent_date = :rentDate,
               h.return_date = :returnDate,
               h.days_hired = (DATEDIFF(h.return_date, h.rent_date) +1),
-              h.hire_price = car.car_price * (DATEDIFF(h.return_date, h.rent_date) +1) + IF(:insuranceCover, 0, 60)
+              h.hire_price = car.car_price * (DATEDIFF(h.return_date, h.rent_date) +1) + IF(:insuranceCover, 0, 60),
+              h.total_wage = (hire_price * 0.05)
             WHERE hire_id = :hireId
         ';
 
@@ -111,7 +116,8 @@ class HireRepository extends EntityRepository
               rent_date,
               return_date,
               days_hired,
-              hire_price
+              hire_price,
+              total_wage
             ) VALUES (
               :customerId,
               :carReg,
@@ -120,6 +126,7 @@ class HireRepository extends EntityRepository
               :returnDate,
               (DATEDIFF(:returnDate, :rentDate) +1),
               (DATEDIFF(:returnDate, :rentDate) +1) * :carPrice + IF(:insuranceCover, 0, 60)
+              (:hirePrice * 0.05)
               )
         ';
 
