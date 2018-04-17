@@ -107,26 +107,28 @@ class VehicleRepository extends EntityRepository
         );
     }
 
-    public function isVehicleAvailableBetween($carReg, $rentDate, $returnDate)
+    public function isVehicleAvailableBetween($carReg, \DateTime $rentDate, \DateTime $returnDate)
     {
         $sql = '
-            SELECT *
+            SELECT COUNT(*)
             FROM hire h
             WHERE h.car_registration = :car_registration
             AND (
-              DATE(date_from) <= :date_from AND DATE(date_to) >= :date_to
-              OR DATE(date_from) >= :date_from AND DATE(date_to) <= :date_to 
-              OR DATE(date_from) BETWEEN :date_from AND :date_to
-              OR DATE(date_to) BETWEEN :date_from AND :date_to
+              DATE(h.rent_date) <= :date_from AND DATE(h.return_date) >= :date_to
+              OR DATE(h.rent_date) >= :date_from AND DATE(h.return_date) <= :date_to 
+              OR DATE(h.rent_date) BETWEEN :date_from AND :date_to
+              OR DATE(h.return_date) BETWEEN :date_from AND :date_to
             )               
         ';
 
         $em = $this->getEntityManager();
-        $em->getConnection()->executeQuery($sql, [
+        $query = $em->getConnection()->executeQuery($sql, [
                 'car_registration' => $carReg,
-                ''
+                'date_to' => $returnDate->format('Y-m-d'),
+                'date_from' => $rentDate->format('Y-m-d')
             ]
         );
+            return !$query->fetchColumn();
     }
 
     public function deleteVehicle($vehicle) {

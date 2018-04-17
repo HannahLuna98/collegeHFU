@@ -17,5 +17,7 @@ class HireConstraint extends Constraint
     {
         return HireValidator::class;
     }
-    public $message = 'The requested vehicle is not available';
+    public $message = 'The requested vehicle is not
+    available between the date range chosen.
+    Please request a new date to rent.';
 }
