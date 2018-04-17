@@ -49,7 +49,7 @@ class HireController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $vehicles = $em->getRepository(Vehicle::class)->viewAllVehicles();
+        $vehicles = $em->getRepository(Vehicle::class)->viewAllVehicles(true);
         $customers = $em->getRepository(Customer::class)->viewAllCustomers();
 
         $vehicleRegs = [];
@@ -95,11 +95,12 @@ class HireController extends Controller
         // Load hire entity from raw query based on id
         $em = $this->getDoctrine()->getManager();
 
-        $vehicles = $em->getRepository(Vehicle::class)->viewAllVehicles();
+        $vehicles = $em->getRepository(Vehicle::class)->viewAllVehicles(true);
         $customers = $em->getRepository(Customer::class)->viewAllCustomers();
 
         $vehicleRegs = [];
         $customerIds = [];
+
         foreach ($vehicles as $vehicle) {
             $vehicleRegs[$vehicle['car_registration']] = $vehicle['car_registration'];
         }

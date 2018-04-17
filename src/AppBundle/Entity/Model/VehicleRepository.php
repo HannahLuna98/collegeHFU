@@ -32,7 +32,7 @@ class VehicleRepository extends EntityRepository
         return $query->fetch();
     }
 
-    public function viewAllVehicles() {
+    public function viewAllVehicles($hideUnavailable = false) {
 
         $sql = '
             SELECT 
@@ -42,11 +42,13 @@ class VehicleRepository extends EntityRepository
             colour,
             capacity,
             car_price,
-            car_available,
-            IF(hire.rent_date < NOW() AND hire.return_date > NOW(), 1, 0) as booked
+            car_available
             FROM car
-            LEFT JOIN hire ON hire.car_registration = car.car_registration
         ';
+
+        if ($hideUnavailable) {
+            $sql .= ' WHERE car_available = 1';
+        }
 
         $em = $this->getEntityManager();
         $query = $em->getConnection()->executeQuery($sql);

@@ -45,11 +45,6 @@ class Salesperson
     protected $lastName;
 
     /**
-     * @ORM\Column(type="decimal", name="commission")
-     */
-    protected $commission;
-
-    /**
      * @return mixed
      */
     public function getId()
@@ -100,24 +95,6 @@ class Salesperson
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCommission()
-    {
-        return $this->commission;
-    }
-
-    /**
-     * @param mixed $commission
-     * @return Salesperson
-     */
-    public function setCommission($commission)
-    {
-        $this->commission = $commission;
         return $this;
     }
 }

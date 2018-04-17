@@ -28,7 +28,7 @@ class HireRepository extends EntityRepository
             days_hired,
             car.car_price * days_hired as hire_price,
             hire_price,
-            hire_price * salesperson.commission as total_wage,
+            hire_price * 0.05 as total_wage,
             total_wage
             FROM hire
             LEFT JOIN customer on hire.customer_id = customer.customer_id
@@ -61,7 +61,7 @@ class HireRepository extends EntityRepository
             days_hired,
             car.car_price * days_hired as hire_price,
             hire_price,
-            hire_price * salesperson.commission as total_wage,
+            hire_price * 0.05 as total_wage,
             total_wage           
             FROM hire
             LEFT JOIN customer on hire.customer_id = customer.customer_id
@@ -125,8 +125,8 @@ class HireRepository extends EntityRepository
               :rentDate,
               :returnDate,
               (DATEDIFF(:returnDate, :rentDate) +1),
-              (DATEDIFF(:returnDate, :rentDate) +1) * :carPrice + IF(:insuranceCover, 0, 60)
-              (:hirePrice * 0.05)
+              (DATEDIFF(:returnDate, :rentDate) +1) * :carPrice + IF(:insuranceCover, 0, 60),
+              (((DATEDIFF(:returnDate, :rentDate) +1) * :carPrice + IF(:insuranceCover, 0, 60)) * 0.05)
               )
         ';
 

@@ -18,8 +18,7 @@ class SalespersonRepository extends EntityRepository
             SELECT 
             salesperson_id as id,
             first_name,
-            last_name,
-            commission
+            last_name
             FROM salesperson
             WHERE salesperson_id = $salesperson
         ";
