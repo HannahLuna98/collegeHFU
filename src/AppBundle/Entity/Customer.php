@@ -77,6 +77,9 @@ class Customer
     /**
      * Customer's Mobile Number
      * @ORM\Column(type="varchar", length=11, name="mobile")
+     * @Assert\Length(
+     *     max = 11,
+     * )
      * @Assert\Type(
      *     type="digit"
      * )

@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 class CustomerController extends Controller
 {
     /**
+     * The customer's index page
+     *
      * @Route("/customer/", name="customer_index")
      */
     public function indexAction(Request $request)
@@ -19,6 +21,8 @@ class CustomerController extends Controller
     }
 
     /**
+     * A help guide focused on the customer module
+     *
      * @Route("/customer/help", name="customer_help")
      */
     public function helpAction(Request $request)
@@ -27,6 +31,8 @@ class CustomerController extends Controller
     }
 
     /**
+     * A page that shows a list of all the customers
+     *
      * @Route("/customer/view/", name="customer_view")
      */
     public function viewAction(Request $request)
@@ -41,6 +47,8 @@ class CustomerController extends Controller
     }
 
     /**
+     * A page that allows the user to add a new customer
+     *
      * @Route("/customer/new", name="customer_new")
      */
     public function newAction(Request $request, $customer = null)
@@ -52,7 +60,7 @@ class CustomerController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            // Load the form fields
             $firstName = $form->get('first_name')->getData();
             $lastName = $form->get('last_name')->getData();
             $street = $form->get('street')->getData();
@@ -63,6 +71,7 @@ class CustomerController extends Controller
 
             $repo->addNewCustomer($firstName, $lastName, $street, $city, $postCode, $mobile, $email);
 
+            // Returns the user to the customer view page.
             return $this->redirectToRoute('customer_view');
         }
 
@@ -74,6 +83,8 @@ class CustomerController extends Controller
     }
 
     /**
+     * A page that allows the user to edit an existing customer
+     *
      * @Route("/customer/edit/{customer}", name="customer_edit")
      */
     public function editAction(Request $request, $customer)
@@ -115,6 +126,8 @@ class CustomerController extends Controller
     }
 
     /**
+     * A page that shows details of an individual customer
+     *
      * @Route("/customer/info/{customer}", name="customer_info")
      */
     public function infoAction($customer)
