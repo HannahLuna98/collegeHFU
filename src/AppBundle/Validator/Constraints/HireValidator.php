@@ -30,6 +30,10 @@ class HireValidator extends ConstraintValidator
         $this->em = $em;
     }
 
+    /**
+     * Checks if the date range chosen is free to be booked,
+     * or else it returns an error
+     */
     public function validate($value, Constraint $constraint)
     {
         $repo = $this->em->getRepository(Vehicle::class);

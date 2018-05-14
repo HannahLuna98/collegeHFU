@@ -13,6 +13,9 @@ use Symfony\Component\Validator\Constraint;
 
 class HireConstraint extends Constraint
 {
+    /**
+     * Displays an error message if a user tries to double book
+     */
     public function validatedBy()
     {
         return HireValidator::class;

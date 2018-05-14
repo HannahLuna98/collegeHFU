@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 class VehicleController extends Controller
 {
     /**
+     * A base view for the Vehicle module
+     *
      * @Route("/vehicle", name="vehicle_index")
      */
     public function indexAction(Request $request)
@@ -19,6 +21,8 @@ class VehicleController extends Controller
     }
 
     /**
+     * A help guide focused on the vehicle module
+     *
      * @Route("/vehicle/help", name="vehicle_help")
      */
     public function helpAction(Request $request)
@@ -27,8 +31,10 @@ class VehicleController extends Controller
     }
 
     /**
+     * A page that shows a list of all the vehicles
+     *
      * @Route("/vehicle/view", name="vehicle_view")
- */
+     */
     public function viewAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -41,6 +47,8 @@ class VehicleController extends Controller
     }
 
     /**
+     * A page that allows the user to edit an existing vehicle
+     *
      * @Route("/vehicle/edit/{vehicle}", name="vehicle_edit")
      */
     public function editAction(Request $request, $vehicle)
@@ -76,6 +84,8 @@ class VehicleController extends Controller
     }
 
     /**
+     * A page that allows the user to add a new vehicle
+     *
      * @Route("/vehicle/new/", name="vehicle_new")
      */
     public function newAction(Request $request, $vehicle = null)
@@ -109,6 +119,8 @@ class VehicleController extends Controller
     }
 
     /**
+     * A page that shows details of an individual vehicle
+     *
      * @Route("/vehicle/info/{vehicle}/", name="vehicle_info")
      */
     public function infoAction($vehicle)

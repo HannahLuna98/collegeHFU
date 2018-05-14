@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 class GraphController extends Controller
 {
     /**
+     * A base view for the Graph module
+     *
      * @Route("/graph/", name="graph_index")
      */
     public function indexAction(Request $request)
@@ -17,6 +19,8 @@ class GraphController extends Controller
     }
 
     /**
+     * A page that shows graphs and trends in the company
+     *
      * @Route("/graph/view", name="graph_view")
      */
     public function viewAction(Request $request)

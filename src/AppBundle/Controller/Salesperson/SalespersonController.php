@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 class SalespersonController extends Controller
 {
     /**
+     * A base view for the Salesperson module
+     *
      * @Route("/salesperson/", name="salesperson_index")
      */
     public function indexAction(Request $request)
@@ -19,6 +21,8 @@ class SalespersonController extends Controller
     }
 
     /**
+     * A help guide focused on the salesperson module
+     *
      * @Route("/salesperson/help/", name="salesperson_help")
      */
     public function helpAction()
@@ -29,6 +33,8 @@ class SalespersonController extends Controller
     }
 
     /**
+     * A page that shows details of an individual salesperson
+     *
      * @Route("/salesperson/view/{salesperson}", name="salesperson_view")
      */
     public function viewAction(Salesperson $salesperson)
@@ -41,6 +47,8 @@ class SalespersonController extends Controller
     }
 
     /**
+     * A page that allows the user to edit an existing salesperson
+     *
      * @Route("/salesperson/edit/{salesperson}", name="salesperson_edit")
      */
     public function editAction(Request $request, $salesperson)

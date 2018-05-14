@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 class HireController extends Controller
 {
     /**
+     * A base view for the Hire module
+     *
      * @Route("/hire/", name="hire_index")
      */
     public function indexAction(Request $request)
@@ -21,6 +23,8 @@ class HireController extends Controller
     }
 
     /**
+     * A help guide focused on the hire module
+     *
      * @Route("/hire/help", name="hire_help")
      */
     public function helpAction(Request $request)
@@ -29,6 +33,8 @@ class HireController extends Controller
     }
 
     /**
+     * A page that shows a list of all the hires
+     *
      * @Route("/hire/view/", name="hire_view")
      */
     public function viewAction(Request $request)
@@ -43,6 +49,8 @@ class HireController extends Controller
     }
 
     /**
+     * A page that allows the user to add a new hire
+     *
      * @Route("/hire/new/", name="hire_new")
      */
     public function newAction(Request $request, $hire = null)
@@ -87,6 +95,8 @@ class HireController extends Controller
     }
 
     /**
+     * A page that allows the user to edit an existing hire
+     *
      * @Route("/hire/edit/{hire}", name="hire_edit")
      */
     public function editAction(Request $request, $hire)
@@ -145,6 +155,8 @@ class HireController extends Controller
     }
 
     /**
+     * A page that shows details of an individual hire
+     *
      * @Route("/hire/info/{hire}", name="hire_info")
      */
     public function infoAction($hire)

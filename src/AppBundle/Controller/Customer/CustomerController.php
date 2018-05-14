@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 class CustomerController extends Controller
 {
     /**
-     * The customer's index page
+     * A base view for the Customer module
      *
      * @Route("/customer/", name="customer_index")
      */

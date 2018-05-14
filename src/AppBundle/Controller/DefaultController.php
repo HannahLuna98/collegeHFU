@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
+     * A base template
+     *
      * @Route("/", name="home")
      */
     public function indexAction(Request $request)

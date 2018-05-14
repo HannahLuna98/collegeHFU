@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 class HistoryController extends Controller
 {
     /**
+     * A base view for the History module
+     *
      * @Route("/history", name="history_index")
      */
     public function indexAction(Request $request)
@@ -18,6 +20,8 @@ class HistoryController extends Controller
     }
 
     /**
+     * A help guide focused on the history module
+     *
      * @Route("/history/help", name="history_help")
      */
     public function helpAction(Request $request)
@@ -26,6 +30,8 @@ class HistoryController extends Controller
     }
 
     /**
+     * A page that shows a list of all the invoices
+     *
      * @Route("/history/view", name="history_view")
      */
     public function viewAction(Request $request)
