@@ -75,7 +75,8 @@ class CustomerController extends Controller
             return $this->redirectToRoute('customer_view');
         }
 
-        return $this->render('default/Customer/customer_new.html.twig', [
+        return $this->render(
+            'default/Customer/customer_new.html.twig', [
                 'form' => $form->createView(),
                 'customer' => $customer
             ]
