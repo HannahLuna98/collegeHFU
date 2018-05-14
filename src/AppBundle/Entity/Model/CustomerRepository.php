@@ -33,6 +33,9 @@ class CustomerRepository extends EntityRepository
         return $query->fetch();
     }
 
+    /**
+     * Finds all of the customers and displays them in a table
+     */
     public function viewAllCustomers() {
 
         $sql = '
@@ -54,6 +57,9 @@ class CustomerRepository extends EntityRepository
         return $query->fetchAll();
     }
 
+    /**
+     * Finds a specific customer and updates changes made by a user
+     */
     public function updateCustomer($firstName, $lastName, $street, $city, $postCode, $mobile, $email,  $id) {
 
         $sql = "
@@ -81,6 +87,9 @@ class CustomerRepository extends EntityRepository
         );
     }
 
+    /**
+     * Creates a new customer
+     */
     public function addNewCustomer($firstName, $lastName, $street, $city, $postcode, $mobile, $email) {
 
         $sql = '
@@ -115,6 +124,9 @@ class CustomerRepository extends EntityRepository
         );
     }
 
+    /**
+     * Removes a customer - NOT IN USE
+     */
     public function deleteCustomer($customer) {
 
         $sql = "
